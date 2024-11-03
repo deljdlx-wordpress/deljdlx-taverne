@@ -1,5 +1,6 @@
 <?php
 
+use Deljdlx\WPTaverne\Controllers\Archive;
 use Deljdlx\WPTaverne\Controllers\Character;
 use Deljdlx\WPTaverne\Controllers\Home;
 use Deljdlx\WPTaverne\Controllers\MindMap;
@@ -21,17 +22,9 @@ $router->get('/customizer-preview', function () {
     ]);
     return $buffer;
 });
-// ===========================================================
-
-// $router->get('/character', function () {
-//     $controller = new Character($this->container);
-//     return $controller->description();
-// });
-// ===========================================================
 
 
-
-$router->get('/board', function () {
+$router->get('/mindmap', function () {
     $constroller = new MindMap($this->container);
     return $constroller->index();
 });
@@ -53,9 +46,6 @@ $router->get('/image/squarify', function () {
     // convert image url into filepath
     $imageSourceFilePath = parse_url($baseImage, PHP_URL_PATH);
     $imageSourceFilePath = str_replace('/wp-content/uploads/', WP_CONTENT_DIR . '/uploads/', $imageSourceFilePath);
-
-    // dump($imageSourceFilePath);
-    // dump($squarifiedImageFilepath);
 
 
     if(!file_exists($squarifiedImageFilepath)) {
@@ -155,6 +145,10 @@ $router->get('^/$', function () {
 $router->addRoute(['GET', 'POST'], '/', function () {
     if(is_singular()) {
         $controller = new Singular($this->container);
+        return $controller->index();
+    }
+    elseif(is_archive()) {
+        $controller = new Archive($this->container);
         return $controller->index();
     }
 });

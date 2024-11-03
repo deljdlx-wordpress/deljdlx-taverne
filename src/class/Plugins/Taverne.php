@@ -6,6 +6,7 @@ use Deljdlx\WPForge\Container;
 use Deljdlx\WPForge\Plugin;
 use Deljdlx\WPForge\Router;
 use Deljdlx\WPTaverne\Controllers\Character;
+use Deljdlx\WPTaverne\Controllers\PageNotFound;
 use Deljdlx\WPTaverne\Models\TavEntity;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class Taverne extends Plugin
             }
             else {
                 // echo wp_forge()->view->render('layouts.home');
-                echo $instance->renderTemplate('layouts.home');
+                $constroller = new PageNotFound($instance->getContainer());
+                echo $constroller->index();
             }
         }
         catch(\Exception $e) {
@@ -39,8 +41,8 @@ class Taverne extends Plugin
         $this->router = new Router();
 
         $router = $this->router;
-        include $this->filepath . '/src/@routes/__default.php';
         include $this->filepath . '/src/@routes/my-desktop.php';
+        include $this->filepath . '/src/@routes/__default.php';
     }
 
 

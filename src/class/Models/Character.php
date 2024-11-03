@@ -165,8 +165,6 @@ class Character extends TavEntity
         ]);
         $post = get_post($post_id);
 
-        dump($post);
-
         return $post;
     }
 

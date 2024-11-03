@@ -50,34 +50,4 @@ class ScenarioEvent extends TavEntity
 
         );
     }
-
-    public function getPlaces() {
-
-        $this->places = [];
-
-        // get all posts of type jdlx_tav_place
-        $places = get_posts([
-            'post_type' => 'jdlx_tav_place',
-            'numberposts' => -1,
-        ]);
-
-        $registeredPlaces = [];
-
-        foreach($places as $place) {
-            if(!isset($registeredPlaces[$place->ID])) {
-                $registeredPlaces[$place->ID] = $place;
-                $characters = get_field('characters', $place->ID);
-                foreach($characters as $character) {
-                    if($character->ID === $this->ID) {
-                        $placeModel = new Place();
-                        $placeModel->loadFromWpPost($place);
-                        $this->places[] = $placeModel;
-                    }
-                }
-            }
-        }
-
-
-        return $this->places;
-    }
 }

@@ -14,6 +14,7 @@ use Deljdlx\WPForge\Theme\Theme;
 use Deljdlx\WPForge\View;
 use Deljdlx\WPTaverne\Models\Article;
 use Deljdlx\WPTaverne\Models\Character as ModelsCharacter;
+use Deljdlx\WPTaverne\Models\Documentation;
 use Deljdlx\WPTaverne\Models\Organization;
 use Deljdlx\WPTaverne\Models\Place as ModelsPlace;
 use Deljdlx\WPTaverne\Models\Resource;
@@ -40,6 +41,10 @@ if(!is_dir(__DIR__ . '/../deljdlx-forge')) {
 require_once __DIR__ . '/../deljdlx-forge/jdlx-forge.php';
 require_once __DIR__ . '/composer/autoload.php';
 require_once __DIR__ . '/embedded-plugins/kirki/kirki.php';
+
+if(!is_dir(__DIR__ . '/cache')) {
+    mkdir(__DIR__ . '/cache');
+}
 
 
 // ===========================================================
@@ -118,6 +123,7 @@ Article::register();
 ModelsScenario::register();
 ScenarioEvent::register();
 Organization::register();
+Documentation::register();
 
 
 $taverne = new Taverne($container, __FILE__);

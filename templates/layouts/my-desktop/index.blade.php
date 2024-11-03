@@ -18,11 +18,11 @@ $places = [];
 
 $types = [
     'characters' => [
-        'type' => 'character',
+        'type' => 'tav_character',
         'instance' => Character::class,
     ],
     'places' => [
-        'type' => 'jdlx_tav_place',
+        'type' => 'tav_place',
         'instance' => Place::class,
     ],
 ];

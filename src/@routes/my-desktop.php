@@ -16,7 +16,6 @@ $router->addRoute(['GET', 'POST'], '/my-dektop/scenario-edit', function () {
 
 $router->get('/my-dektop/calendar?$', function () {
     $this->mustBeLogged();
-
     $buffer = $this->view->render('layouts.my-desktop.calendar', [
         'authorId' => get_current_user_id(),
     ]);

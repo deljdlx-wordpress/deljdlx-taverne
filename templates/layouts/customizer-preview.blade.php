@@ -7,9 +7,6 @@
     <h1> Customizer preview </h1>
 
 
-
-
-
     <section class="customizer-section">
         <div class="customizer-title">Colors</div>
         <div style="display: flex; gap: 1rem">
@@ -46,7 +43,6 @@
 
     </section>
 
-
     <div style="display: flex;">
 
         <section class="customizer-section">
@@ -68,6 +64,46 @@
             </ul>
         </section>
     </div>
+
+
+    <section class="customizer-section">
+        <h1 class="section-title-1">Cards</h1>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div class="card">
+                <a class="block" href="#">
+                    <img class="block" src="https://picsum.photos/200/300" style="width: 100%"/>
+                    <div class="card-title">
+                        <h1>Title h1</h1>
+                    </div>
+                </a>
+            </div>
+            <div class="card">
+                <a class="block" href="#">
+                    <img class="block" src="https://picsum.photos/200/300" style="width: 100%"/>
+                    <div class="card-title">
+                        <h2>Title h2</h2>
+                    </div>
+                </a>
+            </div>
+            <div class="card">
+                <a class="block" href="#">
+                    <img class="block" src="https://picsum.photos/200/300" style="width: 100%"/>
+                    <div class="card-title">
+                        <h2>Title h3</h2>
+                    </div>
+                </a>
+            </div>
+            <div class="card">
+                <a class="block" href="#">
+                    <img class="block" src="https://picsum.photos/200/300" style="width: 100%"/>
+                    <div class="card-title">
+                        <h2>Title h4</h2>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
 
 
 

@@ -16,13 +16,7 @@ foreach($relatedCharacters as $character) {
 }
 
 $places = $post->getPlaces();
-
-// dump($places);
-
 $resources = $post->getResources();
-
-// $resources = [];
-
 @endphp
 
 @extends('layouts/common/default')

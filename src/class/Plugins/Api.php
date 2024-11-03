@@ -300,7 +300,7 @@ class Api extends Plugin
 
     public function getEvents() {
         $args = [
-            'post_type' => 'jdlx_tav_event',
+            'post_type' => 'tav_event',
             'posts_per_page' => -1,
         ];
         $query = new \WP_Query($args);
@@ -312,8 +312,6 @@ class Api extends Plugin
             $date = get_field('date', $post->ID);
             $order = get_field('order', $post->ID);
             $scenarios = get_field('scenario', $post->ID);
-
-            // dump($scenarios);
 
             if(!isset($events[$date])) {
                 $events[$date] = [];

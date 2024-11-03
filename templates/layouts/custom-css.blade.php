@@ -25,6 +25,10 @@ if(is_array($mainFont)) {
 }
 
 
+
+
+
+
 ?>
 
 /* custom css */
@@ -49,9 +53,13 @@ if(is_array($mainFont)) {
 
 .taverne {
 
-  --button-radius:{{get_theme_mod('button-radius', '4px')}}px;
+  --button-radius:{{get_theme_mod('button-radius', '4')}}px;
 
-
+  --card-border-radius:{{get_theme_mod('card-border-radius', '4')}}px;
+  --card-border-width:{{get_theme_mod('card-border-width', '1')}}px;
+  --card-border-color:{{get_theme_mod('card-border-color', 'var(--text-color)')}};
+  --card-title-font-size: {{get_theme_mod('card-title-font-size', 'var(--main-font-size)')}};
+  --card-background-color:{{get_theme_mod('card-background-color', 'transparent')}};
 
   --primary-color: {{rgbaToOklch(get_theme_mod('primary-color', '#f0f'))}};
   --secondary-color: {{rgbaToOklch(get_theme_mod('secondary-color', '#f0f'))}};
@@ -63,109 +71,90 @@ if(is_array($mainFont)) {
   --error-color: {{rgbaToOklch(get_theme_mod('error-color', '#f0f'))}};
 
 
-
-  /*H1===================================================================================*/
+  /*site title===================================================================================*/
   @php
-  $h1 = get_theme_mod('h1-typography');
-  if(is_array($h1)) {
-    if(isset($h1['font-family'])) {
-      $h1FontFamily = $h1['font-family'];
+  $siteTitle = get_theme_mod('site-title-typography');
+  if(is_array($siteTitle)) {
+    if(isset($siteTitle['font-family'])) {
+      $siteTitleFontFamily = $siteTitle['font-family'];
     }
-    if(isset($h1['font-size'])) {
-      $h1FontSize = $h1['font-size'];
+    if(isset($siteTitle['font-size'])) {
+      $siteTitleFontSize = $siteTitle['font-size'];
     }
-    if(isset($h1['font-weight'])) {
-      $h1FontWeight = $h1['font-weight'];
+    if(isset($siteTitle['font-weight'])) {
+      $siteTitleFontWeight = $siteTitle['font-weight'];
     }
-    if(isset($h1['color'])) {
-      $h1FontColor = $h1['color'];
+    if(isset($siteTitle['color'])) {
+      $siteTitleFontColor = $siteTitle['color'];
     }
   }
-  $h1MarginBottom = get_theme_mod('h1-margin-bottom', '1rem');
   @endphp
+  --site-title-font-family: {!!$siteTitleFontFamily ?? 'verdana'!!};
+  --site-title-font-size: {!!$siteTitleFontSize ?? '24px'!!};
+  --site-title-font-color: {!!$siteTitleFontColor ?? 'var(--text-color)'!!};
+  --site-title-font-weight: {!!$siteTitleFontWeight ?? '700'!!};
 
-  --h1-font-family: {!!$h1FontFamily ?? 'verdana'!!};
-  --h1-font-size: {!!$h1FontSize ?? '24px'!!};
-  --h1-font-color: {!!$h1FontColor ?? '#000'!!};
-  --h1-font-weight: {!!$h1FontWeight ?? '700'!!};
-  --h1-margin-bottom: {!!$h1MarginBottom ?? '1rem'!!};
-  /*H2===================================================================================*/
+
+
   @php
-  $h2 = get_theme_mod('h2-typography');
-  if(is_array($h2)) {
-    if(isset($h2['font-family'])) {
-      $h2FontFamily = $h2['font-family'];
-    }
-    if(isset($h2['font-size'])) {
-      $h2FontSize = $h2['font-size'];
-    }
-    if(isset($h2['font-weight'])) {
-      $h2FontWeight = $h2['font-weight'];
-    }
-    if(isset($h2['color'])) {
-      $h2FontColor = $h2['color'];
+
+  for($i = 1 ; $i <= 6 ; $i++) {
+
+    echo '/*H'.$i . ' variables =================================================================================*/'."\n";
+
+    $titleLevel = 'h'.$i;
+    $titleOptions = get_theme_mod($titleLevel.'-typography');
+    if($titleOptions) {
+      if(is_array($titleOptions)) {
+        if(isset($titleOptions['font-family'])) {
+          $titleFontFamily = $titleOptions['font-family'];
+        }
+        if(isset($titleOptions['font-size'])) {
+          $titleFontSize = $titleOptions['font-size'];
+        }
+        if(isset($titleOptions['font-weight'])) {
+          $titleFontWeight = $titleOptions['font-weight'];
+        }
+        if(isset($titleOptions['color'])) {
+          $titleFontColor = $titleOptions['color'];
+        }
+        if(isset($titleOptions['text-align'])) {
+          $titleTextAlign = $titleOptions['text-align'];
+        }
+      }
+      $titleMarginBottom = get_theme_mod($titleLevel.'-margin-bottom', '1rem');
+      $titleMarginTop = get_theme_mod($titleLevel.'-margin-top', '1rem');
+      @endphp
+      --{{$titleLevel}}-font-family: {!!$titleFontFamily ?? 'verdana'!!};
+      --{{$titleLevel}}-font-size: {!!$titleFontSize ?? '24px'!!};
+      --{{$titleLevel}}-text-align: {!!$titleTextAlign ?? 'left'!!};
+      --{{$titleLevel}}-font-color: {!!$titleFontColor ?? 'var(--text-color)'!!};
+      --{{$titleLevel}}-font-weight: {!!$titleFontWeight ?? '700'!!};
+      --{{$titleLevel}}-margin-bottom: {!!$titleMarginBottom ?? '16'!!}px;
+      --{{$titleLevel}}-margin-top: {!!$titleMarginTop ?? '16'!!}px;
+      @php
     }
   }
-  $h2MarginBottom = get_theme_mod('h2-margin-bottom', '1rem');
   @endphp
-
-  --h2-font-family: {!!$h2FontFamily ?? 'verdana'!!};
-  --h2-font-size: {!!$h2FontSize ?? '24px'!!};
-  --h2-font-color: {!!$h2FontColor ?? '#000'!!};
-  --h2-font-weight: {!!$h2FontWeight ?? '700'!!};
-  --h2-margin-bottom: {!!$h1MarginBottom ?? '1rem'!!};
-  /*H3===================================================================================*/
-  @php
-  $h3 = get_theme_mod('h3-typography');
-  if(is_array($h3)) {
-    if(isset($h3['font-family'])) {
-      $h3FontFamily = $h3['font-family'];
-    }
-    if(isset($h3['font-size'])) {
-      $h3FontSize = $h3['font-size'];
-    }
-    if(isset($h3['font-weight'])) {
-      $h3FontWeight = $h3['font-weight'];
-    }
-    if(isset($h3['color'])) {
-      $h3FontColor = $h3['color'];
-    }
-  }
-  $h3MarginBottom = get_theme_mod('h3-margin-bottom', '1rem');
-  @endphp
-
-  --h3-font-family: {!!$h3FontFamily ?? 'verdana'!!};
-  --h3-font-size: {!!$h3FontSize ?? '24px'!!};
-  --h3-font-color: {!!$h3FontColor ?? '#000'!!};
-  --h3-font-weight: {!!$h3FontWeight ?? '700'!!};
-  --h3-margin-bottom: {!!$h1MarginBottom ?? '1rem'!!};
-  /*H4===================================================================================*/
-  @php
-  $h4 = get_theme_mod('h4-typography');
-  if(is_array($h4)) {
-    if(isset($h4['font-family'])) {
-      $h4FontFamily = $h4['font-family'];
-    }
-    if(isset($h4['font-size'])) {
-      $h4FontSize = $h4['font-size'];
-    }
-    if(isset($h4['font-weight'])) {
-      $h4FontWeight = $h4['font-weight'];
-    }
-    if(isset($h4['color'])) {
-      $h4FontColor = $h4['color'];
-    }
-  }
-  $h4MarginBottom = get_theme_mod('h4-margin-bottom', '1rem');
-  @endphp
-
-  --h4-font-family: {!!$h4FontFamily ?? 'verdana'!!};
-  --h4-font-size: {!!$h4FontSize ?? '24px'!!};
-  --h4-font-color: {!!$h4FontColor ?? '#000'!!};
-  --h4-font-weight: {!!$h4FontWeight ?? '700'!!};
-  --h4-margin-bottom: {!!$h1MarginBottom ?? '1rem'!!};
-  /*===================================================================================*/
-
 }
+
+
+/*====================================================================*/
+/*TYPOGRAPHY==========================================================*/
+/*====================================================================*/
+
+
+@for($i = 1 ; $i <= 6 ; $i++)
+  /*H{{$i}}=================================================================================*/
+  body.taverne h{{$i}} {
+    font-family: var(--h{{$i}}-font-family);
+    font-size: var(--h{{$i}}-font-size);
+    color: var(--h{{$i}}-font-color);
+    font-weight: var(--h{{$i}}-font-weight);
+    text-align: var(--h{{$i}}-text-align);
+    margin-bottom: var(--h{{$i}}-margin-bottom);
+    margin-top: var(--h{{$i}}-margin-top);
+  }
+@endfor
 
 
