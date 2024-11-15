@@ -20,7 +20,7 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
 
 @endphp
 
-@extends('layouts/common/default')
+@extends('layouts/common/with-right-column')
 @section('page-title')
     Inscription
 @endsection

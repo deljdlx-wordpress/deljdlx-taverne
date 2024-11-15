@@ -1,2 +1,2 @@
-@extends('layouts/common/base')
+@extends('layouts/common/with-header')
 

@@ -27,7 +27,7 @@ foreach ($posts as $post) {
 @endphp
 
 
-@extends('layouts/common/default')
+@extends('layouts/common/with-right-column')
 @section('page-title')
     Personnages
 @endsection

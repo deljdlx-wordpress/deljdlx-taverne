@@ -21,7 +21,7 @@ $places = get_field('places', $post->ID);
 
 @endphp
 
-@extends('layouts/common/default')
+@extends('layouts/common/with-right-column')
 
 
 @section('page-title')

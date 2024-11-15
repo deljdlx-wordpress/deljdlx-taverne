@@ -71,7 +71,7 @@ foreach($characters as $character) {
 @endphp
 
 
-@extends('layouts/common/default')
+@extends('layouts/common/with-right-column')
 @section('page-title')
     Mon bureau
 @endsection
@@ -79,6 +79,7 @@ foreach($characters as $character) {
 @section('page-content')
 
     <section>
+        <a class="btn btn-neutral" href="{{ home_url() }}/my-dektop/calendar">Calendrier</a>
         <a class="btn btn-neutral" href="{{home_url('/my-desktop/character-edit')}}">Créer un nouveau personnage</a>
         <a class="btn btn-neutral" href="{{home_url('/my-desktop/place-edit')}}">Créer un nouveau lieu</a>
     </section>

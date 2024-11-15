@@ -39,7 +39,7 @@ $scenarios = get_posts([
 
 @endphp
 
-@extends('layouts/common/default')
+@extends('layouts/common/with-right-column')
 @section('page-title')
     Mon bureau
 @endsection

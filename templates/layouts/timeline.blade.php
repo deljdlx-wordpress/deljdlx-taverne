@@ -5,7 +5,7 @@ use Deljdlx\WPTaverne\Models\ScenarioEvent;
 
 @endphp
 
-@extends('layouts/common/default')
+@extends('layouts/common/with-right-column')
 @section('page-title')
     {{$pageTitle}}
 @endsection

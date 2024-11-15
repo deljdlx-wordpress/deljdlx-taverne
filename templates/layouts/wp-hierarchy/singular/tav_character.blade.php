@@ -5,7 +5,7 @@
 
 @endphp
 
-@extends('layouts/common/default')
+@extends('layouts/common/with-right-column')
 @section('page-title')
     Fiche de personnage : {{ $character->getField('name') }}
 @endsection

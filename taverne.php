@@ -20,6 +20,7 @@ use Deljdlx\WPTaverne\Models\Place as ModelsPlace;
 use Deljdlx\WPTaverne\Models\Resource;
 use Deljdlx\WPTaverne\Models\Scenario as ModelsScenario;
 use Deljdlx\WPTaverne\Models\ScenarioEvent;
+use Deljdlx\WPTaverne\Models\SkillTree;
 use Deljdlx\WPTaverne\Plugins\Api;
 use Deljdlx\WPTaverne\Plugins\Character;
 use Deljdlx\WPTaverne\Plugins\Place;
@@ -124,6 +125,8 @@ ModelsScenario::register();
 ScenarioEvent::register();
 Organization::register();
 Documentation::register();
+
+SkillTree::register();
 
 
 $taverne = new Taverne($container, __FILE__);

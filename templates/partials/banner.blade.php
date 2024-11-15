@@ -17,21 +17,22 @@
 
 <div class="banner">
 
-    <span>
-        <a href="{{ home_url() }}">Accueil</a>
-        &nbsp;|&nbsp;<a href="{{ home_url() }}/documentation">Documentation</a>
-        &nbsp;|&nbsp;<a href="{{ home_url() }}/timeline">Timeline</a>
-        &nbsp;|&nbsp;<a href="{{ home_url() }}/mindmap">Mind map</a>
-
+    <span class="side-left">
+        <a href="{{ home_url() }}/tav_documentation">Documentation</a>
+        <a href="{{ home_url() }}/timeline">Timeline</a>
+        <a href="{{ home_url() }}/mindmap">Mind map</a>
     </span>
-    <span>
+
+    <span class="side-right">
         @if(!is_user_logged_in())
-            <a href="{{ home_url() }}/sign-up">S'inscrire</a>&nbsp;|&nbsp;
+            <a href="{{ home_url() }}/sign-up">S'inscrire</a>
             <a href="{{ home_url() }}/sign-in">Se connecter</a>
         @else
             <a href="{{ home_url() }}/my-dektop">Mon bureau</a>
-            &nbsp;|&nbsp;<a href="{{ home_url() }}/my-dektop/calendar">Calendrier</a>
-            &nbsp;|&nbsp;<a href="{{ home_url() }}/sign-out">Se déconnecter</a>
         @endif
+
+        <span class="burger-trigger dashicons dashicons-menu"></span>
+
     </span>
+
 </div>

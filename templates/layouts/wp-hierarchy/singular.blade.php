@@ -19,7 +19,7 @@ $places = $post->getPlaces();
 $resources = $post->getResources();
 @endphp
 
-@extends('layouts/common/default')
+@extends('layouts/common/with-right-column')
 
 
 @section('page-title')

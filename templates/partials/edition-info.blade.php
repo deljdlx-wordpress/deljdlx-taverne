@@ -23,7 +23,7 @@ $dayWithout0 = ltrim($today->format('d'), '0');
 $saint = $saints[$today->format('m')][$dayWithout0][0];
 @endphp
 
-    
+
 
 <div class="edition-info">
     {{-- <span>
@@ -35,4 +35,8 @@ $saint = $saints[$today->format('m')][$dayWithout0][0];
     <span>
         Edition n°{{ $editionNumber }}
     </span>
+
+    @if(is_user_logged_in())
+        <a href="{{ home_url() }}/sign-out" title="Disconnect">Déconnexion</a>
+    @endif
 </div>

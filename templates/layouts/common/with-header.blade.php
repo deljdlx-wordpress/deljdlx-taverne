@@ -1,7 +1,7 @@
 @extends('layouts/common/empty')
 
 @section('body-content')
-  <div class="container">
+  <div class="main-container">
 
     <div id="header-image" @php
       if(get_theme_mod('header-image')) {

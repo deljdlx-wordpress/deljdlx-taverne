@@ -67,12 +67,13 @@
         <textarea class="textarea textarea-primary" style="width: 100%">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, alias, amet aspernatur atque autem blanditiis consequatur corporis cumque delectus doloremque doloribus ea eius eligendi eos error est eum ex explicabo facilis fugiat harum id illum impedit in ipsa ipsum iusto laborum laudantium magnam maxime minima molestias natus nemo neque nihil nisi nobis non nulla numquam obcaecati odit officiis omnis optio pariatur perferendis perspiciatis placeat praesentium provident quae quam quas quia quidem quisquam quo ratione recusandae rem repellendus repudiandae rerum saepe sapiente sequi similique sit soluta sunt suscipit tempora tenetur totam ullam unde vel veniam veritatis voluptas voluptates voluptatum.
         </textarea>
 
-
-        <input
-            type="text"
-            placeholder="Type here"
-            class="input input-bordered input-primary w-full max-w-xs"
-          />
+        <div>
+          <input
+              type="text"
+              placeholder="Type here"
+              class="input input-bordered input-primary w-full"
+            />
+        </div>
 
         <label class="input input-bordered flex items-center gap-2  input input-bordered input-primary w-full max-w-xs">
             <input type="text" class="grow" placeholder="Search" />
@@ -111,6 +112,8 @@
             </svg>
             <input type="text" class="grow" placeholder="Username" />
           </label>
+
+
           <label class="input input-bordered flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -124,6 +127,20 @@
             </svg>
             <input type="password" class="grow" value="password" />
           </label>
+
+
+          <label class="form-control w-full max-w-xs">
+            <div class="label">
+              <span class="label-text">What is your name?</span>
+              <span class="label-text-alt">Top Right label</span>
+            </div>
+            <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+            <div class="label">
+              <span class="label-text-alt">Bottom Left label</span>
+              <span class="label-text-alt">Bottom Right label</span>
+            </div>
+          </label>
+
 
     </div>
 </section>
