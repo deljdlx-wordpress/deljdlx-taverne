@@ -53,25 +53,52 @@ class GenericComponentManager
     this._panel = panel;
   }
 
-  async prepareValues(values, manager) {
-    // let data = manager.values;
-    let data = values;
+  async prepareValues(values, afterSource = false, afterAdapter = false) {
 
-    if (this.source) {
-        const response = await fetch(this.source);
-        data = await response.json();
-        this.values = data;
+    let data = this._layout.sharedData;
 
-        this._layout.refreshConfigurationPanel();
+    data = Object.assign(data, values);
+
+
+    let source = this.source;
+    source = this.interpolateValues(source, data);
+
+    if (source) {
+        const response = await fetch(source);
+        const remoteData = await response.json();
+
+        data = Object.assign(data, remoteData);
+
+        if(afterSource) {
+          afterSource(data);
+        }
     }
 
-    if (this.adapter) {
-        const code = manager.adapter;
+    let adapter = this.adapter;
+    adapter = this.interpolateValues(adapter, data);
+
+    if (adapter) {
+        const code = adapter;
         let __VALUES = data;
         eval(code);
-        data = __VALUES;
+        data = Object.assign(data, __VALUES);
+
+        if(afterSource) {
+          afterAdapter(data);
+        }
+
     }
+
     return data;
+  }
+
+
+  interpolateValues(content, data) {
+    for (let key in data) {
+      let value = data[key];
+      content = content.replace(new RegExp('{{\s*' + key + '\s*}}', 'g'), value);
+    }
+    return content;
   }
 
 

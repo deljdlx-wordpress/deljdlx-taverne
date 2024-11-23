@@ -21,6 +21,8 @@
     editor.session.on('change', function(delta) {
       input.value = editor.getValue();
     });
+
+    input.ace = editor;
   }
 
 })();

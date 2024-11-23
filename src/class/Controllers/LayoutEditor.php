@@ -54,6 +54,22 @@ class LayoutEditor extends Base
 
         $html = $this->renderPanel($layout['layout']['content']);
 
+        $inputs = $this->getRequest()->input();
+
+        foreach($inputs as $key => $value) {
+            if(preg_match('`^shared-`', $key)) {
+                $variableName = str_replace('shared-', '', $key);
+                $layout['sharedData'][$variableName] = $value;
+            }
+        }
+
+
+        $html .= '<textarea id="sharedData" style="display: none">' .
+            json_encode($layout['sharedData'], JSON_PRETTY_PRINT) .
+        '</textarea>';
+
+
+
         return $this->renderTemplate('layouts.layout-editor.view', [
             'html' => $html,
         ]);

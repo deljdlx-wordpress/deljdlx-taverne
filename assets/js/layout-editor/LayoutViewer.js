@@ -1,20 +1,29 @@
 class LayoutViewer
 {
+
+  sharedData = {};
+
   constructor() {
 
   }
 
   async render() {
+
+
+    const sharedDataContainer = document.querySelector('#sharedData');
+    if(sharedDataContainer) {
+      this.sharedData = JSON.parse(sharedDataContainer.value);
+      console.log('%cLayoutViewer.js :: 12 =============================', 'color: #f00; font-size: 1rem');
+    }
+
+    console.log(sharedData);
+
     const components = document.querySelectorAll('.componentContainer');
 
     components.forEach(async (componentContainer) => {
       const configuration = JSON.parse(
         componentContainer.querySelector('.componentConfiguration').value
       );
-
-
-      console.log('%cLayoutViewer.js :: 16 =============================', 'color: #f00; font-size: 1rem');
-      console.log(configuration);
 
       if(configuration) {
         if(configuration.type === 'echart-line') {
@@ -281,6 +290,11 @@ class LayoutViewer
   async prepareData(values, configuration) {
     let data = values;
 
+    data = Object.assign(data, this.sharedData);
+    console.log('%cLayoutViewer.js :: 291 =============================', 'color: #f00; font-size: 1rem');
+    console.log(data);
+
+
     if(configuration.source) {
       const response = await fetch(configuration.source);
       const json = await response.json();
@@ -303,8 +317,8 @@ class LayoutViewer
 
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  const layoutViwer = new LayoutViewer();
-  layoutViwer.render();
-
+  if() {
+    const layoutViwer = new LayoutViewer();
+    layoutViwer.render();
+  }
 });

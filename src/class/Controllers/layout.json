@@ -1,5 +1,7 @@
 {
-    "sharedData": {},
+    "sharedData": {
+        "foo": "bar"
+    },
     "layout": {
         "settings": {
             "hasHeaders": true,
@@ -287,7 +289,7 @@
                                                 },
                                                 "adapter": "",
                                                 "sharedData": {},
-                                                "html": "\n    <h1>{{title}}</h1>\n    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec pur us. Donec euismod, nunc nec vehicula<p>\n    <p>Nullam nec pur us. Donec euismod, nunc nec vehicula</p>\n  ",
+                                                "html": "<h1>{{title}}</h1>\n<p>{{foo}}</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec pur us. Donec euismod, nunc nec vehicula</p>\n<p>Nullam nec pur us. Donec euismod, nunc nec vehicula</p>",
                                                 "type": "tinymce"
                                             }
                                         },

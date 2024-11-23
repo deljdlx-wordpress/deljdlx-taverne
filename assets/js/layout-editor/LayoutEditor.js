@@ -105,6 +105,12 @@ class LayoutEditor {
   }
 
   refreshConfigurationPanel() {
+
+
+    console.log('%cLayoutEditor.js :: 110 =============================', 'color: #f00; font-size: 1rem');
+    console.log('refreshConfigurationPanel');
+
+
     if(this.currentComponent.manager) {
       const inputs = document.querySelectorAll('#component-configuration *[data-bind]');
       inputs.forEach((input) => {
@@ -118,6 +124,14 @@ class LayoutEditor {
         }
 
         input.value = value;
+
+
+        console.log('%cLayoutEditor.js :: 123 =============================', 'color: #f00; font-size: 1rem');
+        console.log(value);
+
+        if(input.dataset.type === 'json' || input.dataset.type === 'code') {
+          input.ace.session.setValue(value);
+        }
       });
     }
   }
@@ -313,9 +327,6 @@ class LayoutEditor {
 
     panel.manager = componentManager;
 
-
-
-
     const element = document.createElement('div');
     element.classList.add('component');
     element.dataset.component = componentType;
@@ -366,13 +377,7 @@ class LayoutEditor {
     content.style.height = '100%';
 
     element.appendChild(content);
-
-
     container.appendChild(element);
-
-
-    console.log('%cLayoutEditor.js :: 392 =============================', 'color: #f00; font-size: 1rem');
-    console.log(componentManager);
 
     this.currentComponent = element;
     componentManager.onCreate(content, element.manager);
@@ -382,7 +387,6 @@ class LayoutEditor {
   saveManagerConfiguration(manager) {
     const panel = manager._panel;
     panel.config.content[0].componentState.configuration = {};
-    // panel.config.content[0].componentState.configuration.type = componentName;
 
     for(let attribute in manager) {
       const value = manager[attribute];

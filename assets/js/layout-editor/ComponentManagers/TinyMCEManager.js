@@ -29,17 +29,17 @@ class TinyMCEManager extends GenericComponentManager {
     super.onCreate(contentElement);
 
     let html = this.html;
-    let data = this.prepareValues(this.data);
 
-    for (let key in this._layout.sharedData) {
-      let value = this._layout.sharedData[key];
-      html = html.replace(new RegExp('{{\s*' + key + '\s*}}', 'g'), value);
-    }
+    let data = await this.prepareValues(this.data, (data) => {
+      this.data = data;
+      this._layout.setConfigurationPanelContent();
+    });
 
-    for (let key in data) {
-      let value = data[key];
-      html = html.replace(new RegExp('{{\s*' + key + '\s*}}', 'g'), value);
-    }
+    this.data = data;
+
+
+
+    html = this.interpolateValues(html, data);
 
     const htmlContainer = document.createElement('div');
     htmlContainer.innerHTML = html;
