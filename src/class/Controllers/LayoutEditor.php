@@ -159,16 +159,6 @@ class LayoutEditor extends Base
         </div>';
 
 
-        $html .= '<script>';
-            if($configuration['componentType'] === 'echart-radar') {
-                // $html .= 'var myChart = echarts.init(document.getElementById("'. $id .'"));';
-                // $html .= 'var option = ' . json_encode($configuration['option']) . ';';
-                // $html .= 'myChart.setOption(option);';
-            }
-
-
-        $html .= '</script>';
-
         return $html;
     }
 }

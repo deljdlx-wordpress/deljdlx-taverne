@@ -1,6 +1,8 @@
 {
     "sharedData": {
-        "foo": "bar"
+        "foo": "bar",
+        "n": 10,
+        "content": "hello world"
     },
     "layout": {
         "settings": {
@@ -34,109 +36,320 @@
         },
         "content": [
             {
-                "type": "column",
+                "type": "row",
                 "isClosable": true,
                 "reorderEnabled": true,
                 "title": "",
                 "content": [
                     {
-                        "type": "row",
+                        "type": "column",
                         "isClosable": true,
                         "reorderEnabled": true,
                         "title": "",
-                        "height": 50,
+                        "width": 50,
                         "content": [
                             {
-                                "type": "column",
+                                "type": "stack",
+                                "header": {},
                                 "isClosable": true,
                                 "reorderEnabled": true,
                                 "title": "",
-                                "width": 50,
+                                "activeItemIndex": 0,
+                                "height": 50,
                                 "content": [
                                     {
-                                        "type": "stack",
-                                        "header": {},
+                                        "title": "Add container",
+                                        "type": "component",
+                                        "componentName": "container",
+                                        "componentState": {
+                                            "text": "",
+                                            "configuration": {
+                                                "fields": [
+                                                    {
+                                                        "caption": "Title",
+                                                        "bind": "title",
+                                                        "type": "text",
+                                                        "group": 0
+                                                    },
+                                                    {
+                                                        "caption": "Data source",
+                                                        "bind": "source",
+                                                        "type": "text",
+                                                        "group": 1
+                                                    },
+                                                    {
+                                                        "caption": "Data",
+                                                        "bind": "data",
+                                                        "type": "json",
+                                                        "group": 1
+                                                    },
+                                                    {
+                                                        "caption": "Data  adapter",
+                                                        "description": "Data are stored in a variable named __VALUES",
+                                                        "bind": "adapter",
+                                                        "type": "code",
+                                                        "group": 1
+                                                    }
+                                                ],
+                                                "type": "datatable",
+                                                "title": "Data table",
+                                                "source": "",
+                                                "data": {
+                                                    "headers": [
+                                                        "Day",
+                                                        "Values 1",
+                                                        "Values 2"
+                                                    ],
+                                                    "values": [
+                                                        [
+                                                            "Mon",
+                                                            7.04871648365708,
+                                                            0.5483994066317457
+                                                        ],
+                                                        [
+                                                            "Tue",
+                                                            51.811231430446036,
+                                                            0.6966075573950425
+                                                        ],
+                                                        [
+                                                            "Wed",
+                                                            7.46497092404208,
+                                                            0.3061537664191736
+                                                        ],
+                                                        [
+                                                            "Thu",
+                                                            69.19644979508553,
+                                                            0.17229805298714607
+                                                        ],
+                                                        [
+                                                            "Fri",
+                                                            25.947533516520103,
+                                                            0.7113301569748707
+                                                        ],
+                                                        [
+                                                            "Sat",
+                                                            51.63096712674855,
+                                                            0.3805454783658133
+                                                        ],
+                                                        [
+                                                            "Sun",
+                                                            37.051742699134294,
+                                                            0.39220218166534093
+                                                        ]
+                                                    ]
+                                                },
+                                                "adapter": "",
+                                                "sharedData": {
+                                                    "foo": "bar",
+                                                    "n": 5,
+                                                    "content": "hello world"
+                                                }
+                                            }
+                                        },
+                                        "isClosable": true,
+                                        "reorderEnabled": true
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "row",
+                                "isClosable": true,
+                                "reorderEnabled": true,
+                                "title": "",
+                                "height": 50,
+                                "content": [
+                                    {
+                                        "type": "column",
                                         "isClosable": true,
                                         "reorderEnabled": true,
                                         "title": "",
-                                        "activeItemIndex": 0,
-                                        "height": 50,
+                                        "width": 50,
                                         "content": [
                                             {
-                                                "title": "Add container",
-                                                "type": "component",
-                                                "componentName": "container",
-                                                "componentState": {
-                                                    "text": "",
-                                                    "configuration": {
-                                                        "fields": [
-                                                            {
-                                                                "caption": "Title",
-                                                                "bind": "title",
-                                                                "type": "text",
-                                                                "group": 0
-                                                            },
-                                                            {
-                                                                "caption": "Data source",
-                                                                "bind": "source",
-                                                                "type": "text",
-                                                                "group": 1
-                                                            },
-                                                            {
-                                                                "caption": "Data",
-                                                                "bind": "data",
-                                                                "type": "json",
-                                                                "group": 1
-                                                            },
-                                                            {
-                                                                "caption": "Data  adapter",
-                                                                "description": "Data are stored in a variable named __VALUES",
-                                                                "bind": "adapter",
-                                                                "type": "code",
-                                                                "group": 1
-                                                            }
-                                                        ],
-                                                        "componentType": "generic",
-                                                        "title": "Bar chart",
-                                                        "source": "",
-                                                        "data": {
-                                                            "Mon": 27.963075339002906,
-                                                            "Tue": 39.497793910486045,
-                                                            "Wed": 88.53158653595968,
-                                                            "Thu": 90.82986634444448,
-                                                            "Fri": 30.018499818587664,
-                                                            "Sat": 60.92657147203941,
-                                                            "Sun": 91.89198297063201
-                                                        },
-                                                        "adapter": "",
-                                                        "sharedData": {},
-                                                        "defaultColors": [
-                                                            "#FF6B6B",
-                                                            "#FFA351",
-                                                            "#FFD93D",
-                                                            "#1DD1A1",
-                                                            "#4D96FF",
-                                                            "#9B59B6",
-                                                            "#2BC4CC",
-                                                            "#B3B3B3"
-                                                        ],
-                                                        "legendDefaultColor": "#fff",
-                                                        "colors": [
-                                                            "#FF6B6B",
-                                                            "#FFA351",
-                                                            "#FFD93D",
-                                                            "#1DD1A1",
-                                                            "#4D96FF",
-                                                            "#9B59B6",
-                                                            "#2BC4CC",
-                                                            "#B3B3B3"
-                                                        ],
-                                                        "chartType": "bar",
-                                                        "type": "echart-bar"
-                                                    }
-                                                },
+                                                "type": "stack",
+                                                "header": {},
                                                 "isClosable": true,
-                                                "reorderEnabled": true
+                                                "reorderEnabled": true,
+                                                "title": "",
+                                                "activeItemIndex": 0,
+                                                "height": 50,
+                                                "content": [
+                                                    {
+                                                        "title": "Add container",
+                                                        "type": "component",
+                                                        "componentName": "container",
+                                                        "componentState": {
+                                                            "text": "",
+                                                            "configuration": {
+                                                                "fields": [
+                                                                    {
+                                                                        "caption": "Title",
+                                                                        "bind": "title",
+                                                                        "type": "text",
+                                                                        "group": 0
+                                                                    },
+                                                                    {
+                                                                        "caption": "Data source",
+                                                                        "bind": "source",
+                                                                        "type": "text",
+                                                                        "group": 1
+                                                                    },
+                                                                    {
+                                                                        "caption": "Data",
+                                                                        "bind": "data",
+                                                                        "type": "json",
+                                                                        "group": 1
+                                                                    },
+                                                                    {
+                                                                        "caption": "Data  adapter",
+                                                                        "description": "Data are stored in a variable named __VALUES",
+                                                                        "bind": "adapter",
+                                                                        "type": "code",
+                                                                        "group": 1
+                                                                    }
+                                                                ],
+                                                                "type": "echart-donut",
+                                                                "title": "Donut chart",
+                                                                "source": "",
+                                                                "data": {
+                                                                    "Mon": 18.203991409216936,
+                                                                    "Tue": 61.18080628875839,
+                                                                    "Wed": 94.47752553274805,
+                                                                    "Thu": 1.3852767079375994,
+                                                                    "Fri": 0.6146544484583405,
+                                                                    "Sat": 94.58155558568096,
+                                                                    "Sun": 59.09727089959003
+                                                                },
+                                                                "adapter": "",
+                                                                "sharedData": {
+                                                                    "foo": "bar",
+                                                                    "n": 5,
+                                                                    "content": "hello world"
+                                                                },
+                                                                "defaultColors": [
+                                                                    "#FF6B6B",
+                                                                    "#FFA351",
+                                                                    "#FFD93D",
+                                                                    "#1DD1A1",
+                                                                    "#4D96FF",
+                                                                    "#9B59B6",
+                                                                    "#2BC4CC",
+                                                                    "#B3B3B3"
+                                                                ],
+                                                                "legendDefaultColor": "#fff",
+                                                                "colors": [
+                                                                    "#FF6B6B",
+                                                                    "#FFA351",
+                                                                    "#FFD93D",
+                                                                    "#1DD1A1",
+                                                                    "#4D96FF",
+                                                                    "#9B59B6",
+                                                                    "#2BC4CC",
+                                                                    "#B3B3B3"
+                                                                ],
+                                                                "chartType": "pie",
+                                                                "radius": [
+                                                                    "40%",
+                                                                    "70%"
+                                                                ]
+                                                            }
+                                                        },
+                                                        "isClosable": true,
+                                                        "reorderEnabled": true
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "stack",
+                                                "header": {},
+                                                "isClosable": true,
+                                                "reorderEnabled": true,
+                                                "title": "",
+                                                "activeItemIndex": 0,
+                                                "width": 50,
+                                                "height": 50,
+                                                "content": [
+                                                    {
+                                                        "title": "Add container",
+                                                        "type": "component",
+                                                        "componentName": "container",
+                                                        "componentState": {
+                                                            "text": "",
+                                                            "configuration": {
+                                                                "fields": [
+                                                                    {
+                                                                        "caption": "Title",
+                                                                        "bind": "title",
+                                                                        "type": "text",
+                                                                        "group": 0
+                                                                    },
+                                                                    {
+                                                                        "caption": "Data source",
+                                                                        "bind": "source",
+                                                                        "type": "text",
+                                                                        "group": 1
+                                                                    },
+                                                                    {
+                                                                        "caption": "Data",
+                                                                        "bind": "data",
+                                                                        "type": "json",
+                                                                        "group": 1
+                                                                    },
+                                                                    {
+                                                                        "caption": "Data  adapter",
+                                                                        "description": "Data are stored in a variable named __VALUES",
+                                                                        "bind": "adapter",
+                                                                        "type": "code",
+                                                                        "group": 1
+                                                                    }
+                                                                ],
+                                                                "type": "echart-pie",
+                                                                "title": "Pie chart",
+                                                                "source": "",
+                                                                "data": {
+                                                                    "Mon": 70.07732151190933,
+                                                                    "Tue": 24.61784277806278,
+                                                                    "Wed": 20.705648948514344,
+                                                                    "Thu": 9.660578646985796,
+                                                                    "Fri": 70.68430899111229,
+                                                                    "Sat": 37.513468239926695,
+                                                                    "Sun": 39.70231643622644
+                                                                },
+                                                                "adapter": "",
+                                                                "sharedData": {
+                                                                    "foo": "bar",
+                                                                    "n": 5,
+                                                                    "content": "hello world"
+                                                                },
+                                                                "defaultColors": [
+                                                                    "#FF6B6B",
+                                                                    "#FFA351",
+                                                                    "#FFD93D",
+                                                                    "#1DD1A1",
+                                                                    "#4D96FF",
+                                                                    "#9B59B6",
+                                                                    "#2BC4CC",
+                                                                    "#B3B3B3"
+                                                                ],
+                                                                "legendDefaultColor": "#fff",
+                                                                "colors": [
+                                                                    "#FF6B6B",
+                                                                    "#FFA351",
+                                                                    "#FFD93D",
+                                                                    "#1DD1A1",
+                                                                    "#4D96FF",
+                                                                    "#9B59B6",
+                                                                    "#2BC4CC",
+                                                                    "#B3B3B3"
+                                                                ],
+                                                                "chartType": "pie",
+                                                                "radius": "70%"
+                                                            }
+                                                        },
+                                                        "isClosable": true,
+                                                        "reorderEnabled": true
+                                                    }
+                                                ]
                                             }
                                         ]
                                     },
@@ -184,20 +397,24 @@
                                                                 "group": 1
                                                             }
                                                         ],
-                                                        "componentType": "generic",
-                                                        "title": "Pie chart",
+                                                        "type": "echart-radar",
+                                                        "title": "Radar chart",
                                                         "source": "",
                                                         "data": {
-                                                            "Mon": 92.22140106103933,
-                                                            "Tue": 85.39426876000944,
-                                                            "Wed": 81.47909520702395,
-                                                            "Thu": 50.76505597548433,
-                                                            "Fri": 49.174668476999315,
-                                                            "Sat": 30.101355216396698,
-                                                            "Sun": 81.9786176641604
+                                                            "Mon": 98.73629016710875,
+                                                            "Tue": 75.42674828527385,
+                                                            "Wed": 55.751236687731456,
+                                                            "Thu": 34.69048847335383,
+                                                            "Fri": 67.98612440414513,
+                                                            "Sat": 82.02791396616635,
+                                                            "Sun": 32.74122682192282
                                                         },
                                                         "adapter": "",
-                                                        "sharedData": {},
+                                                        "sharedData": {
+                                                            "foo": "bar",
+                                                            "n": 5,
+                                                            "content": "hello world"
+                                                        },
                                                         "defaultColors": [
                                                             "#FF6B6B",
                                                             "#FFA351",
@@ -219,9 +436,13 @@
                                                             "#2BC4CC",
                                                             "#B3B3B3"
                                                         ],
-                                                        "chartType": "pie",
-                                                        "radius": "70%",
-                                                        "type": "echart-pie"
+                                                        "chartType": "line",
+                                                        "areaColors": [
+                                                            "#77EADF",
+                                                            "#26C3BE",
+                                                            "#64AFE9",
+                                                            "#428BD4"
+                                                        ]
                                                     }
                                                 },
                                                 "isClosable": true,
@@ -230,174 +451,15 @@
                                         ]
                                     }
                                 ]
-                            },
-                            {
-                                "type": "stack",
-                                "header": {},
-                                "isClosable": true,
-                                "reorderEnabled": true,
-                                "title": "",
-                                "activeItemIndex": 0,
-                                "width": 25,
-                                "content": [
-                                    {
-                                        "title": "Add container",
-                                        "type": "component",
-                                        "componentName": "container",
-                                        "componentState": {
-                                            "text": "",
-                                            "configuration": {
-                                                "fields": [
-                                                    {
-                                                        "caption": "Title",
-                                                        "bind": "title",
-                                                        "type": "text",
-                                                        "group": 0
-                                                    },
-                                                    {
-                                                        "caption": "Data source",
-                                                        "bind": "source",
-                                                        "type": "text",
-                                                        "group": 1
-                                                    },
-                                                    {
-                                                        "caption": "Data",
-                                                        "bind": "data",
-                                                        "type": "json",
-                                                        "group": 1
-                                                    },
-                                                    {
-                                                        "caption": "Data  adapter",
-                                                        "description": "Data are stored in a variable named __VALUES",
-                                                        "bind": "adapter",
-                                                        "type": "code",
-                                                        "group": 1
-                                                    },
-                                                    {
-                                                        "caption": "HTML",
-                                                        "description": "Use {{VARIABLE_NAME}} to replace with data",
-                                                        "bind": "html",
-                                                        "type": "html",
-                                                        "group": 0
-                                                    }
-                                                ],
-                                                "componentType": "generic",
-                                                "title": "HTML content",
-                                                "source": "",
-                                                "data": {
-                                                    "title": "HTML exemple"
-                                                },
-                                                "adapter": "",
-                                                "sharedData": {},
-                                                "html": "<h1>{{title}}</h1>\n<p>{{foo}}</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec pur us. Donec euismod, nunc nec vehicula</p>\n<p>Nullam nec pur us. Donec euismod, nunc nec vehicula</p>",
-                                                "type": "tinymce"
-                                            }
-                                        },
-                                        "isClosable": true,
-                                        "reorderEnabled": true
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "stack",
-                                "header": {},
-                                "isClosable": true,
-                                "reorderEnabled": true,
-                                "title": "",
-                                "activeItemIndex": 0,
-                                "height": 50,
-                                "width": 25,
-                                "content": [
-                                    {
-                                        "title": "Add container",
-                                        "type": "component",
-                                        "componentName": "container",
-                                        "componentState": {
-                                            "text": "",
-                                            "configuration": {
-                                                "fields": [
-                                                    {
-                                                        "caption": "Title",
-                                                        "bind": "title",
-                                                        "type": "text",
-                                                        "group": 0
-                                                    },
-                                                    {
-                                                        "caption": "Data source",
-                                                        "bind": "source",
-                                                        "type": "text",
-                                                        "group": 1
-                                                    },
-                                                    {
-                                                        "caption": "Data",
-                                                        "bind": "data",
-                                                        "type": "json",
-                                                        "group": 1
-                                                    },
-                                                    {
-                                                        "caption": "Data  adapter",
-                                                        "description": "Data are stored in a variable named __VALUES",
-                                                        "bind": "adapter",
-                                                        "type": "code",
-                                                        "group": 1
-                                                    }
-                                                ],
-                                                "componentType": "generic",
-                                                "title": "Donut chart",
-                                                "source": "",
-                                                "data": {
-                                                    "Mon": 86.52774501351877,
-                                                    "Tue": 79.60420391414043,
-                                                    "Wed": 41.13466139055111,
-                                                    "Thu": 96.64431018462251,
-                                                    "Fri": 39.269649732407096,
-                                                    "Sat": 53.72768763438849,
-                                                    "Sun": 31.33195327699816
-                                                },
-                                                "adapter": "",
-                                                "sharedData": {},
-                                                "defaultColors": [
-                                                    "#FF6B6B",
-                                                    "#FFA351",
-                                                    "#FFD93D",
-                                                    "#1DD1A1",
-                                                    "#4D96FF",
-                                                    "#9B59B6",
-                                                    "#2BC4CC",
-                                                    "#B3B3B3"
-                                                ],
-                                                "legendDefaultColor": "#fff",
-                                                "colors": [
-                                                    "#FF6B6B",
-                                                    "#FFA351",
-                                                    "#FFD93D",
-                                                    "#1DD1A1",
-                                                    "#4D96FF",
-                                                    "#9B59B6",
-                                                    "#2BC4CC",
-                                                    "#B3B3B3"
-                                                ],
-                                                "chartType": "pie",
-                                                "radius": [
-                                                    "40%",
-                                                    "70%"
-                                                ],
-                                                "type": "echart-donut"
-                                            }
-                                        },
-                                        "isClosable": true,
-                                        "reorderEnabled": true
-                                    }
-                                ]
                             }
                         ]
                     },
                     {
-                        "type": "row",
+                        "type": "column",
                         "isClosable": true,
                         "reorderEnabled": true,
                         "title": "",
-                        "height": 25,
+                        "width": 50,
                         "content": [
                             {
                                 "type": "stack",
@@ -406,8 +468,7 @@
                                 "reorderEnabled": true,
                                 "title": "",
                                 "activeItemIndex": 0,
-                                "width": 50,
-                                "height": 100,
+                                "height": 25,
                                 "content": [
                                     {
                                         "title": "Add container",
@@ -443,20 +504,24 @@
                                                         "group": 1
                                                     }
                                                 ],
-                                                "componentType": "generic",
+                                                "type": "echart-line",
                                                 "title": "Line chart",
                                                 "source": "",
                                                 "data": {
-                                                    "Mon": 82.96840437838804,
-                                                    "Tue": 26.60023724923226,
-                                                    "Wed": 13.613351558065556,
-                                                    "Thu": 67.0617556862871,
-                                                    "Fri": 45.60565937798171,
-                                                    "Sat": 16.85680096463935,
-                                                    "Sun": 49.455525050207186
+                                                    "Mon": 29.57837750719905,
+                                                    "Tue": 32.816691443523126,
+                                                    "Wed": 71.6080863457818,
+                                                    "Thu": 91.78912684605076,
+                                                    "Fri": 98.35439503119181,
+                                                    "Sat": 91.64397696306852,
+                                                    "Sun": 81.11119116498284
                                                 },
                                                 "adapter": "",
-                                                "sharedData": {},
+                                                "sharedData": {
+                                                    "foo": "bar",
+                                                    "n": 5,
+                                                    "content": "hello world"
+                                                },
                                                 "defaultColors": [
                                                     "#FF6B6B",
                                                     "#FFA351",
@@ -478,8 +543,97 @@
                                                     "#2BC4CC",
                                                     "#B3B3B3"
                                                 ],
-                                                "chartType": "line",
-                                                "type": "echart-line"
+                                                "chartType": "line"
+                                            }
+                                        },
+                                        "isClosable": true,
+                                        "reorderEnabled": true
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "stack",
+                                "header": {},
+                                "isClosable": true,
+                                "reorderEnabled": true,
+                                "title": "",
+                                "activeItemIndex": 0,
+                                "height": 25,
+                                "content": [
+                                    {
+                                        "title": "Add container",
+                                        "type": "component",
+                                        "componentName": "container",
+                                        "componentState": {
+                                            "text": "",
+                                            "configuration": {
+                                                "fields": [
+                                                    {
+                                                        "caption": "Title",
+                                                        "bind": "title",
+                                                        "type": "text",
+                                                        "group": 0
+                                                    },
+                                                    {
+                                                        "caption": "Data source",
+                                                        "bind": "source",
+                                                        "type": "text",
+                                                        "group": 1
+                                                    },
+                                                    {
+                                                        "caption": "Data",
+                                                        "bind": "data",
+                                                        "type": "json",
+                                                        "group": 1
+                                                    },
+                                                    {
+                                                        "caption": "Data  adapter",
+                                                        "description": "Data are stored in a variable named __VALUES",
+                                                        "bind": "adapter",
+                                                        "type": "code",
+                                                        "group": 1
+                                                    }
+                                                ],
+                                                "type": "echart-bar",
+                                                "title": "Bar chart",
+                                                "source": "",
+                                                "data": {
+                                                    "Mon": 1.8772798530359847,
+                                                    "Tue": 21.650341168977306,
+                                                    "Wed": 14.877332267602284,
+                                                    "Thu": 84.40222486007765,
+                                                    "Fri": 57.94333714622179,
+                                                    "Sat": 76.23313141164824,
+                                                    "Sun": 66.7306660516571
+                                                },
+                                                "adapter": "",
+                                                "sharedData": {
+                                                    "foo": "bar",
+                                                    "n": 5,
+                                                    "content": "hello world"
+                                                },
+                                                "defaultColors": [
+                                                    "#FF6B6B",
+                                                    "#FFA351",
+                                                    "#FFD93D",
+                                                    "#1DD1A1",
+                                                    "#4D96FF",
+                                                    "#9B59B6",
+                                                    "#2BC4CC",
+                                                    "#B3B3B3"
+                                                ],
+                                                "legendDefaultColor": "#fff",
+                                                "colors": [
+                                                    "#FF6B6B",
+                                                    "#FFA351",
+                                                    "#FFD93D",
+                                                    "#1DD1A1",
+                                                    "#4D96FF",
+                                                    "#9B59B6",
+                                                    "#2BC4CC",
+                                                    "#B3B3B3"
+                                                ],
+                                                "chartType": "bar"
                                             }
                                         },
                                         "isClosable": true,
@@ -528,157 +682,83 @@
                                                         "bind": "adapter",
                                                         "type": "code",
                                                         "group": 1
+                                                    },
+                                                    {
+                                                        "caption": "HTML",
+                                                        "description": "Use {{VARIABLE_NAME}} to replace with data",
+                                                        "bind": "html",
+                                                        "type": "html",
+                                                        "group": 0
                                                     }
                                                 ],
-                                                "componentType": "generic",
-                                                "title": "Radar chart",
-                                                "source": "",
-                                                "data": {
-                                                    "Mon": 14.54575840267982,
-                                                    "Tue": 79.87759262327125,
-                                                    "Wed": 27.939232381701196,
-                                                    "Thu": 99.88787715775807,
-                                                    "Fri": 2.2955744441709003,
-                                                    "Sat": 15.74263358989121,
-                                                    "Sun": 78.9409268523441
+                                                "type": "tinymce",
+                                                "title": "",
+                                                "source": "https://taverne-dev.jlb.ninja/generators/kaamelott.json.php?n={{n}}",
+                                                "data": [
+                                                    {
+                                                        "citation": "Ooooooooh, non mais faire du labyrinthe avec un trou-de-balle pareil, faut drôlement de la vaillance, hein !",
+                                                        "infos": {
+                                                            "auteur": "Alexandre Astier",
+                                                            "acteur": "Lionnel Astier",
+                                                            "personnage": "Léodagan",
+                                                            "saison": "Livre II",
+                                                            "episode": "L'Oubli"
+                                                        }
+                                                    },
+                                                    {
+                                                        "citation": "Gardez votre épée et servez-vous-en pour trouver le Graal ! [Arthur replante Excalibur]",
+                                                        "infos": {
+                                                            "auteur": "Alexandre Astier",
+                                                            "acteur": "Audrey Fleurot",
+                                                            "personnage": "La Dame du Lac",
+                                                            "saison": "Livre V",
+                                                            "episode": "La roche et le fer "
+                                                        }
+                                                    },
+                                                    {
+                                                        "citation": "Quand vous êtes parti, je me suis dit : Je vais me promener ? Je vais me pas promener ? Finalement j'ai décidé de me beurrer la gueule.",
+                                                        "infos": {
+                                                            "auteur": "Alexandre Astier",
+                                                            "acteur": "Jacques Chambon",
+                                                            "personnage": "Merlin",
+                                                            "saison": "Livre VI",
+                                                            "episode": "Præceptores"
+                                                        }
+                                                    },
+                                                    {
+                                                        "citation": "Je me sens la fureur de l'ours ! […]\r\nJe me sens le courage de l'oiseau ! […]\r\nJe suis sautillant comme le mulot ! […]\r\nJe frétille comme une p'tite truite ! […]\r\nJ'ai la vigueur d'un insecte !",
+                                                        "infos": {
+                                                            "auteur": "Alexandre Astier",
+                                                            "acteur": "Aurélien Portehaut",
+                                                            "personnage": "Gauvain",
+                                                            "saison": "Pilote",
+                                                            "episode": "Le Duel"
+                                                        }
+                                                    },
+                                                    {
+                                                        "citation": "(À Roparzh) Vous avez tué ma poule ?! Non mais est-ce que vous êtes pas un peu marteau, vous ? Parce que moi ça y est, j'ai les nerfs qui commencent à vriller ! Je vous montre : moi je bondis comme ça, et je vous arrive dessus en piqué diagonal. Et là c'est l'hymne à la cruauté, hein, un autel dressé au culte de la barbarie !",
+                                                        "infos": {
+                                                            "auteur": "Alexandre Astier",
+                                                            "acteur": "Serge Papagalli",
+                                                            "personnage": "Guethenoc",
+                                                            "saison": "Livre III",
+                                                            "episode": "Feue La Poule de Guethenoc"
+                                                        }
+                                                    }
+                                                ],
+                                                "adapter": "__VALUES.content = '';\nfor(let i = 0; i< {{n}} ; i++) {\n    __VALUES.content += `<div>\n        ${__VALUES[i].citation}\n    <div>`;\n}\n\n__VALUES.title='Test remote kaamelott';",
+                                                "sharedData": {
+                                                    "foo": "bar",
+                                                    "n": 5,
+                                                    "content": "hello world"
                                                 },
-                                                "adapter": "",
-                                                "sharedData": {},
-                                                "defaultColors": [
-                                                    "#FF6B6B",
-                                                    "#FFA351",
-                                                    "#FFD93D",
-                                                    "#1DD1A1",
-                                                    "#4D96FF",
-                                                    "#9B59B6",
-                                                    "#2BC4CC",
-                                                    "#B3B3B3"
-                                                ],
-                                                "legendDefaultColor": "#fff",
-                                                "colors": [
-                                                    "#FF6B6B",
-                                                    "#FFA351",
-                                                    "#FFD93D",
-                                                    "#1DD1A1",
-                                                    "#4D96FF",
-                                                    "#9B59B6",
-                                                    "#2BC4CC",
-                                                    "#B3B3B3"
-                                                ],
-                                                "chartType": "line",
-                                                "areaColors": [
-                                                    "#77EADF",
-                                                    "#26C3BE",
-                                                    "#64AFE9",
-                                                    "#428BD4"
-                                                ],
-                                                "type": "echart-radar"
+                                                "html": "<h1>{{title}}</h1>\n<p>{{content}}</p>"
                                             }
                                         },
                                         "isClosable": true,
                                         "reorderEnabled": true
                                     }
                                 ]
-                            }
-                        ]
-                    },
-                    {
-                        "type": "stack",
-                        "header": {},
-                        "isClosable": true,
-                        "reorderEnabled": true,
-                        "title": "",
-                        "activeItemIndex": 0,
-                        "height": 25,
-                        "content": [
-                            {
-                                "title": "Add container",
-                                "type": "component",
-                                "componentName": "container",
-                                "componentState": {
-                                    "text": "",
-                                    "configuration": {
-                                        "fields": [
-                                            {
-                                                "caption": "Title",
-                                                "bind": "title",
-                                                "type": "text",
-                                                "group": 0
-                                            },
-                                            {
-                                                "caption": "Data source",
-                                                "bind": "source",
-                                                "type": "text",
-                                                "group": 1
-                                            },
-                                            {
-                                                "caption": "Data",
-                                                "bind": "data",
-                                                "type": "json",
-                                                "group": 1
-                                            },
-                                            {
-                                                "caption": "Data  adapter",
-                                                "description": "Data are stored in a variable named __VALUES",
-                                                "bind": "adapter",
-                                                "type": "code",
-                                                "group": 1
-                                            }
-                                        ],
-                                        "componentType": "generic",
-                                        "title": "Data table",
-                                        "source": "",
-                                        "data": {
-                                            "headers": [
-                                                "Day",
-                                                "Values 1",
-                                                "Values 2"
-                                            ],
-                                            "values": [
-                                                [
-                                                    "Mon",
-                                                    6.003505565732037,
-                                                    0.18825413151596093
-                                                ],
-                                                [
-                                                    "Tue",
-                                                    64.81120113852346,
-                                                    0.609467630212065
-                                                ],
-                                                [
-                                                    "Wed",
-                                                    14.583445932986038,
-                                                    0.20805711115847858
-                                                ],
-                                                [
-                                                    "Thu",
-                                                    97.46650353008515,
-                                                    0.7910238533521763
-                                                ],
-                                                [
-                                                    "Fri",
-                                                    0.5064987709872293,
-                                                    0.9771341317944711
-                                                ],
-                                                [
-                                                    "Sat",
-                                                    49.31617403947435,
-                                                    0.42402671677688386
-                                                ],
-                                                [
-                                                    "Sun",
-                                                    80.06721578022544,
-                                                    0.7752788542077742
-                                                ]
-                                            ]
-                                        },
-                                        "adapter": "",
-                                        "sharedData": {},
-                                        "type": "datatable"
-                                    }
-                                },
-                                "isClosable": true,
-                                "reorderEnabled": true
                             }
                         ]
                     }

@@ -105,12 +105,6 @@ class LayoutEditor {
   }
 
   refreshConfigurationPanel() {
-
-
-    console.log('%cLayoutEditor.js :: 110 =============================', 'color: #f00; font-size: 1rem');
-    console.log('refreshConfigurationPanel');
-
-
     if(this.currentComponent.manager) {
       const inputs = document.querySelectorAll('#component-configuration *[data-bind]');
       inputs.forEach((input) => {
@@ -170,20 +164,26 @@ class LayoutEditor {
     }
   }
 
+  clearConfigurationPanel() {
+    for(let i = 0 ; i < 10; i++) {
+      // component-configuration-0
+      const tab = document.querySelector('#component-configuration-' + i);
+
+      if(tab) {
+
+        console.log('%cLayoutEditor.js :: 177 =============================', 'color: #f00; font-size: 1rem');
+        console.log(tab);
+
+        tab.innerHTML = '';
+      }
+    }
+  }
+
 
   setConfigurationPanelContent() {
 
     this.configurationContainer.classList.add('active');
-
-    for(let i = 0 ; i < 10; i++) {
-      const tab = document.querySelector('#component-configuration-' + i);
-      if(tab) {
-        tab.innerHTML = '';
-      }
-    }
-
-    // document.querySelector('#component-configuration').innerHTML = '';
-
+    this.clearConfigurationPanel();
 
     let fields = this.currentComponent.manager.fields;
 
@@ -306,7 +306,6 @@ class LayoutEditor {
   }
 
   createComponent(container, draggable) {
-
     const componentType = draggable.dataset.component;
 
     if(!this.registeredComponentTypes[componentType]) {
@@ -363,10 +362,20 @@ class LayoutEditor {
     const deleteButton = document.createElement('span');
     deleteButton.innerHTML = '<i class="fa fa-trash"></i>';
     toolbar.appendChild(deleteButton);
+
+
     deleteButton.addEventListener('click', (event) => {
+
+      // stop propagation
+      event.stopPropagation();
+
       const container = event.currentTarget.closest('.component');
       container.remove();
+      this.currentComponent = null;
 
+      console.log('%cLayoutEditor.js :: 377 =============================', 'color: #f00; font-size: 1rem');
+      console.log("CLEAR CONFIGURATION PANEL");
+      this.clearConfigurationPanel();
     });
 
     element.appendChild(toolbar);

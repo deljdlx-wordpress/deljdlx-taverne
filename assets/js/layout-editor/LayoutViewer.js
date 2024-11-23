@@ -16,8 +16,6 @@ class LayoutViewer
       console.log('%cLayoutViewer.js :: 12 =============================', 'color: #f00; font-size: 1rem');
     }
 
-    console.log(sharedData);
-
     const components = document.querySelectorAll('.componentContainer');
 
     components.forEach(async (componentContainer) => {
@@ -290,25 +288,46 @@ class LayoutViewer
   async prepareData(values, configuration) {
     let data = values;
 
-    data = Object.assign(data, this.sharedData);
-    console.log('%cLayoutViewer.js :: 291 =============================', 'color: #f00; font-size: 1rem');
-    console.log(data);
 
 
     if(configuration.source) {
-      const response = await fetch(configuration.source);
+
+      let source = configuration.source;
+      source = this.interpolateValues(source, data);
+
+      const response = await fetch(source);
       const json = await response.json();
       data = json;
     }
 
-    if(configuration.adapter) {
+
+    let adapter = configuration.adapter;
+
+    if(adapter) {
+      adapter = this.interpolateValues(adapter, data);
       let __VALUES = data;
-      eval(configuration.adapter);
+      eval(adapter);
       data = __VALUES;
     }
 
     return data;
   }
+
+
+  interpolateValues(content, data) {
+    for (let key in data) {
+      let value = data[key];
+      content = content.replace(new RegExp('{{\s*' + key + '\s*}}', 'g'), value);
+    }
+
+    for (let key in this.sharedData) {
+      let value = this.sharedData[key];
+      content = content.replace(new RegExp('{{\s*' + key + '\s*}}', 'g'), value);
+    }
+
+    return content;
+  }
+
 
 }
 
@@ -317,8 +336,7 @@ class LayoutViewer
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  if() {
-    const layoutViwer = new LayoutViewer();
-    layoutViwer.render();
-  }
+  const layoutViwer = new LayoutViewer();
+  layoutViwer.render();
+
 });

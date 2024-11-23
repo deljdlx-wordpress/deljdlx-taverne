@@ -55,9 +55,10 @@ class GenericComponentManager
 
   async prepareValues(values, afterSource = false, afterAdapter = false) {
 
-    let data = this._layout.sharedData;
+    // let data = this._layout.sharedData;
+    // data = Object.assign(data, values);
 
-    data = Object.assign(data, values);
+    let data = values;
 
 
     let source = this.source;
@@ -67,7 +68,7 @@ class GenericComponentManager
         const response = await fetch(source);
         const remoteData = await response.json();
 
-        data = Object.assign(data, remoteData);
+        data = remoteData;
 
         if(afterSource) {
           afterSource(data);
@@ -81,9 +82,9 @@ class GenericComponentManager
         const code = adapter;
         let __VALUES = data;
         eval(code);
-        data = Object.assign(data, __VALUES);
+        data = __VALUES;
 
-        if(afterSource) {
+        if(afterAdapter) {
           afterAdapter(data);
         }
 
@@ -98,6 +99,12 @@ class GenericComponentManager
       let value = data[key];
       content = content.replace(new RegExp('{{\s*' + key + '\s*}}', 'g'), value);
     }
+
+    for (let key in this._layout.sharedData) {
+      let value = this._layout.sharedData[key];
+      content = content.replace(new RegExp('{{\s*' + key + '\s*}}', 'g'), value);
+    }
+
     return content;
   }
 
