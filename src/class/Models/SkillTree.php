@@ -5,7 +5,7 @@ use Deljdlx\WPForge\Models\Post;
 
 class SkillTree extends Post
 {
-    public static $POST_TYPE = 'tav_skill_tree';
+    public static $POST_TYPE = 'tav_skilltree';
 
     private static $fields = [
         'illustration' => [
@@ -37,7 +37,7 @@ class SkillTree extends Post
                     [
                         'title',
                     ],
-                    true,
+                    false,
                 );
 
                 self::registerFields(

@@ -5,10 +5,17 @@ namespace Deljdlx\WPTaverne\Plugins;
 use Deljdlx\WPForge\Container;
 use Deljdlx\WPForge\Plugin;
 use Deljdlx\WPForge\Router;
-use Deljdlx\WPTaverne\Controllers\Character;
 use Deljdlx\WPTaverne\Controllers\PageNotFound;
-use Deljdlx\WPTaverne\Models\TavEntity;
-use Illuminate\Http\Request;
+use Deljdlx\WPTaverne\Models\Article;
+use Deljdlx\WPTaverne\Models\Character as ModelsCharacter;
+use Deljdlx\WPTaverne\Models\Documentation;
+use Deljdlx\WPTaverne\Models\Organization;
+use Deljdlx\WPTaverne\Models\Place;
+use Deljdlx\WPTaverne\Models\Resource;
+use Deljdlx\WPTaverne\Models\Scenario;
+use Deljdlx\WPTaverne\Models\ScenarioEvent;
+use Deljdlx\WPTaverne\Models\SkillTree;
+
 
 class Taverne extends Plugin
 {
@@ -41,8 +48,22 @@ class Taverne extends Plugin
         $this->router = new Router();
 
         $router = $this->router;
+
+
+        include $this->filepath . '/src/@routes/layout-editor.php';
         include $this->filepath . '/src/@routes/my-desktop.php';
         include $this->filepath . '/src/@routes/__default.php';
+
+        ModelsCharacter::register();
+        Place::register();
+        Resource::register();
+        Article::register();
+        Scenario::register();
+        ScenarioEvent::register();
+        Organization::register();
+        Documentation::register();
+        SkillTree::register();
+
     }
 
 
@@ -50,6 +71,44 @@ class Taverne extends Plugin
     {
         global $wpdb;
         parent::initialize();
+
+
+        add_action('admin_menu', function() {
+            // Créer un menu principal
+            add_menu_page(
+                'Taverne contents', // Titre de la page
+                'Taverne contents',            // Titre du menu
+                'manage_options',      // Capacité requise
+                'taverne_group',      // Slug unique
+                function() {
+                    echo '<div class="wrap"><h1>Veuillez sélectionner un sous-menu.</h1></div>';
+                },                    // Fonction callback pour la page (vide si inutile)
+                'dashicons-category',  // Icône du menu
+                -10                      // Position
+            );
+
+            $cpts = [
+                ModelsCharacter::$POST_TYPE => 'Characters',
+                Place::$POST_TYPE => 'Places',
+                Resource::$POST_TYPE => 'Resources',
+                Article::$POST_TYPE => 'Articles',
+                Scenario::$POST_TYPE => 'Scenarios',
+                ScenarioEvent::$POST_TYPE => 'Scenario events',
+                Organization::$POST_TYPE => 'Organizations',
+                Documentation::$POST_TYPE => 'Documentations',
+                SkillTree::$POST_TYPE => 'Skills trees',
+            ];
+
+            foreach($cpts as $slug => $caption) {
+                add_submenu_page(
+                    'taverne_group',      // Parent slug
+                    $caption, // Titre de la page
+                    $caption,            // Titre du sous-menu
+                    'manage_options',      // Capacité requise
+                    'edit.php?post_type=' .  $slug // Slug du CPT
+                );
+            }
+        });
     }
 
 
@@ -115,6 +174,32 @@ class Taverne extends Plugin
             // execute query
             $wpdb->query($query);
         }
+
+
+        $sql = "SHOW TABLES LIKE '{$wpdb->prefix}tav_character_skills'";
+        $result = $wpdb->get_results($sql);
+
+        if(empty($result)) {
+            $query ="
+                CREATE TABLE `{$wpdb->prefix}tav_character_skills` (
+                    `id` INT(11) NOT NULL AUTO_INCREMENT,
+                    `character_id` INT(11) NULL DEFAULT NULL,
+                    `skilltree_id` INT(11) NULL DEFAULT NULL,
+                    `json` LONGTEXT NULL DEFAULT NULL,
+                    `created_at` DATETIME NULL DEFAULT NULL,
+                    `updated_at` DATETIME NULL DEFAULT NULL,
+                    PRIMARY KEY (`id`) USING BTREE,
+                    INDEX `character_id` (`character_id`) USING BTREE
+                )
+                COLLATE='utf8mb4_general_ci'
+                ENGINE=InnoDB
+                ;
+            ";
+            // execute query
+            $wpdb->query($query);
+        }
+
+
     }
 
 

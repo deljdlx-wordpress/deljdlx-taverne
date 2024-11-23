@@ -105,7 +105,7 @@ class Place extends TavEntity
                         'editor',
                         'thumbnail',
                     ],
-                    true,
+                    false,
                 );
 
                 self::registerFields(

@@ -6,18 +6,30 @@
 @section('body-content')
 
 
+
+
+
+
 {{-- 2 column div with tailwind --}}
 <div x-data="application" class="skill-tree-editor">
 
 
     <div>
 
-        <h1 class="text-2xl font-bold">Arbre de compétences
+        <h1 class="flex items-baseline">
+            <a href="{{ get_home_url() }}/my-dektop"><i class="fas fa-home"></i></a>
+
+            <span>Arbre de compétences</span>
             <a href="{{ $skillTree->getPermalink() }}" target="_blank">
                 <i class="fas fa-external-link-alt"></i>
             </a>
         </h1>
-        <input id="skill-tree-name" name="skill-tree-name" type="text" class="input input-bordered w-full" placeholder=""  value="{{$skillTree->post_title}}"/>
+
+        <div class="flex items-stretch gap-1">
+            <input id="skill-tree-name" name="skill-tree-name" type="text" class="input input-bordered input-sm" placeholder=""  value="{{$skillTree->post_title}}"/>
+            <button id="save-trigger" class="btn btn-primary btn-sm">Enregistrer</button>
+        </div>
+
 
         <div class="grid grid-cols-12 gap-2">
             <div class="col-span-3 p-2" style="border: solid 2px #f0f; min-height: 300px">
@@ -26,7 +38,6 @@
                 <div>
                     <input id="skillTreeId" value="{{$skillTree->ID}}" type="hidden">
                     <input id="skillTreePermalink" value="{{$skillTree->getPermalink()}}" type="hidden">
-                    <button id="save-trigger" class="btn btn-primary grow">Enregistrer</button>
                 </div>
             </div>
 
@@ -46,11 +57,27 @@
                                 </fieldset>
 
                                 <fieldset>
-                                    <label class="input input-bordered flex items-center gap-2">
+                                    <label>
+                                        Illustration :
+                                    </label>
+                                    <input id="imageUploader" x-on:input="updateSelectedNode" name="image" type="file" class="grow" placeholder="" />
+                                    <div id="imagePreview" style="display: none"></div>
+                                </fieldset>
+
+
+                                <template x-if="selectedNode.data.illustration">
+                                    <fieldset>
+                                        <img :src="selectedNode.data.illustration"/>
+                                    </fieldset>
+                                </template>
+
+
+                                <fieldset>
+                                    <label>
                                         Description :
                                     </label>
                                     <div>
-                                        <textarea x-on:input="updateSelectedNode" x-model="selectedNode.data.description" name="description" class="textarea textarea-bordered w-full grow"></textarea>
+                                        <textarea x-on:input="updateSelectedNode" x-model="selectedNode.data.description" name="description" class="quill textarea textarea-bordered w-full grow"></textarea>
                                     <div>
                                 </fieldset>
 
@@ -68,20 +95,22 @@
                                 {{-- <template x-if="selectedNode.type === 'cluster' || selectedNode.type === 'skill' || selectedNode.type === 'perk'"> --}}
 
                                 <fieldset>
-                                    <label class="input input-bordered flex items-center gap-2">
+                                    <label>
                                         Valeur :
                                     </label>
                                     <div>
-                                        <textarea x-on:input="updateSelectedNode" x-model="selectedNode.data.value" name="value" class="textarea textarea-bordered w-full grow"></textarea>
+                                        {{-- <textarea x-on:input="updateSelectedNode" x-model="selectedNode.data.value" name="value" class="textarea textarea-bordered w-full grow"></textarea> --}}
+                                        <div class="code" data-field-name="value" data-lines="1"></div>
                                     <div>
                                 </fieldset>
 
                                 <fieldset>
-                                    <label class="input input-bordered flex items-center gap-2">
+                                    <label>
                                         Modificateurs :
                                     </label>
                                     <div>
-                                        <textarea x-on:input="updateSelectedNode" x-model="selectedNode.data.modifiers" name="modifiers" class="textarea textarea-bordered w-full grow"></textarea>
+                                        {{-- <textarea x-on:input="updateSelectedNode" x-model="selectedNode.data.modifiers" name="modifiers" class="textarea textarea-bordered w-full grow"></textarea> --}}
+                                        <div class="code" data-field-name="modifiers" data-lines="10"></div>
                                     <div>
                                 </fieldset>
                         </form>
@@ -96,8 +125,6 @@
     </div>
 
 </div>
-
-
 
 
 

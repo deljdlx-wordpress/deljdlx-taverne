@@ -73,7 +73,7 @@ class Scenario extends TavEntity
                         'title',
                         'editor',
                     ],
-                    true,
+                    false,
                 );
 
 

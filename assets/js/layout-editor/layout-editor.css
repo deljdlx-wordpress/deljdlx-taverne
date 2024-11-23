@@ -1,0 +1,226 @@
+h2 {
+  font: 14px Arial, sans-serif;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+html,
+body {
+  height: 100%;
+  /* overflow: hidden; */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+
+/* ============================================== */
+
+#wrapper {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  /* overflow: hidden;
+  position: absolute; */
+  top: 0;
+  left: 0;
+  /* z-index: 100000; */
+}
+
+#leftContainer {
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #222;
+  z-index:1000;
+
+  border: solid 1px #aaa;
+}
+
+#rightContainer {
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #222;
+  z-index:1000;
+  border: solid 1px #aaa;
+}
+
+#layoutContainer {
+  width: calc(100% - 600px - 5px);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: calc(300px + 5px);
+  box-shadow: -3px 0px 9px 0px rgba(0, 0, 0, 0.4);
+  border: solid 1px #aaaa;
+  /* z-index: 100000; */
+}
+
+/* ============================================== */
+
+
+
+
+
+.component-configuration__toolbar {
+  background-color: 222;
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+  padding: 4px
+}
+
+#component-configuration-container .minimize {
+  display: none;
+}
+
+#component-configuration-container.fullscreen {
+  background-color: #333;
+  padding: 8px;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index:100000;
+}
+
+#component-configuration-container.fullscreen .minimize {
+  display: block;
+}
+
+#component-configuration-container.fullscreen .maximize {
+  display: none;
+}
+
+
+
+
+
+
+#menuContainer div {
+  cursor: move;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #333;
+  cursor: pointer;
+  padding: 10px 5px;
+  color: #BBB;
+  background: #1a1a1a;
+  font: 12px Arial, sans-serif;
+}
+
+#menuContainer li:hover {
+  background: #111;
+  color: #CCC;
+}
+
+
+
+/* ============================================================================== */
+
+.forge-container {
+  height: 100%;
+  width: 100%;
+  border: solid 1px #f0f;
+}
+
+
+.draggable {
+  z-index: 10000;
+}
+
+.header {
+  height: 30px;
+  background-color: #f0f8;
+}
+
+
+/* ============================================== */
+
+.component.active {
+  background-color: #ff03;
+}
+
+
+.component-toolbar {
+  display: flex;
+  gap: 4px;
+
+  padding: 2px 4px;
+  justify-content: flex-end;
+  background-color: #0008;
+
+  color: #aaa;
+}
+
+
+/* ============================================== */
+
+#component-configuration-container {
+  display: none;
+}
+#component-configuration-container.active {
+  display: block;
+}
+
+
+#component-configuration-container fieldset {
+  padding: 2px;
+}
+
+#component-configuration-container fieldset legend {
+  background-color: #000;
+  color: #fff;
+}
+
+#component-configuration-container input,
+#component-configuration-container textarea {
+  color: #000;
+  width: 100%;
+  padding: 4px;
+}
+
+#component-configuration-container textarea {
+  height: 100px;
+}
+
+
+*[data-type="code"] {
+  display:none;
+}
+
+#component-configuration-container .ace-container {
+  height:300px;
+}
+
+
+.mce-branding {
+  display: none;
+}
+
+
+
+
+/* ============================================== */
+
+
+
+#component-configuration-container input.tab::after {
+  color: #fff;
+  /* no text wrap */
+  white-space: nowrap;
+  /* border: 1px solid #f0f; */
+}
+
+#component-configuration-container input.tab:checked {
+  border-color: #f0f;
+}

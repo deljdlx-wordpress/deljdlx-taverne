@@ -36,7 +36,7 @@ class ScenarioEvent extends TavEntity
                         'title',
                         'editor',
                     ],
-                    true,
+                    false,
                 );
 
 

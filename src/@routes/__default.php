@@ -1,9 +1,9 @@
 <?php
 
 use Deljdlx\WPTaverne\Controllers\Archive;
-use Deljdlx\WPTaverne\Controllers\Character;
 use Deljdlx\WPTaverne\Controllers\Home;
 use Deljdlx\WPTaverne\Controllers\MindMap;
+use Deljdlx\WPTaverne\Controllers\Sandbox;
 use Deljdlx\WPTaverne\Controllers\Singular;
 use Deljdlx\WPTaverne\Controllers\Timeline;
 
@@ -14,6 +14,15 @@ $router->get('/css/custom.css', function () {
     ]);
     return $buffer;
 });
+
+
+
+$router->get('/sandbox', function () {
+    $controller = new Sandbox($this->container);
+    return $controller->index();
+});
+
+
 
 
 $router->get('/customizer-preview', function () {

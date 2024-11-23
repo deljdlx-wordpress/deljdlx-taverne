@@ -13,6 +13,9 @@ class Base
     public static $prependJs = [];
     public static $appendJs = [];
 
+    public static $prependCss = [];
+    public static $appendCss = [];
+
     protected Container $container;
     protected View $view;
     protected Theme $theme;
@@ -29,6 +32,11 @@ class Base
     public function addJs(array|string $js, $prepend = false)
     {
         $this->container->get(Theme::class)->addJs($js, $prepend);
+    }
+
+    public function addcss(array|string $js, $prepend = false)
+    {
+        $this->container->get(Theme::class)->addCss($js, $prepend);
     }
 
     public function getCurrentUserId()
@@ -54,6 +62,14 @@ class Base
         }
         foreach(static::$appendJs as $js) {
             $this->addJs($js, false);
+        }
+
+        foreach(static::$prependCss as $css) {
+            $this->addCss($css, true);
+        }
+
+        foreach(static::$appendCss as $css) {
+            $this->addCss($css, false);
         }
 
         return $this->view->render($templateName, $variables);

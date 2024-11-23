@@ -62,7 +62,7 @@
 
     <script src="//unpkg.com/alpinejs" defer></script>
 
-    <script src="https://unpkg.com/swapy/dist/swapy.min.js"></script>
+    {{-- <script src="https://unpkg.com/swapy/dist/swapy.min.js"></script> --}}
     @wp_footer
 
 </body>

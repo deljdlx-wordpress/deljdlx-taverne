@@ -52,7 +52,7 @@ class Resource extends TavEntity
                         'title',
                         'editor',
                     ],
-                    true,
+                    false,
                 );
 
 

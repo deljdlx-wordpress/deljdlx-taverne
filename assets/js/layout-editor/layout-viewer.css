@@ -1,0 +1,22 @@
+.componentContainer {
+  position: relative;
+  height: 100%;
+  outline: solid 1px #f0f;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.componentConfiguration {
+  color: #000;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.componentContent {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+

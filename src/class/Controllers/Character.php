@@ -23,32 +23,49 @@ class Character extends Base
 
         if(isset($_GET['sheet'])) {
 
-            if(isset($_GET['action']) && $_GET['action'] ==='save') {
-                return $this->saveSheet($character);
-            }
 
-
-            $postId = 612;
-            if($postId) {
-                $skillTree = SkillTree::find($postId);
-            }
-            else {
-                $skillTree = new SkillTree();
-            }
-
-
-
-            return $this->renderTemplate('layouts.character-sheet', [
-                'character' => $character,
-                'skillTree' => $skillTree,
-            ]);
         }
         else {
             return $this->renderTemplate('layouts.wp-hierarchy.singular.tav_character', [
                 'character' => $character,
             ]);
         }
+    }
 
+    public function sheet()
+    {
+
+        $characterId = $this->getRequest()->input('id');
+        $skilltreeId = $this->getRequest()->input('skilltree');
+
+        if($skilltreeId) {
+            $skilltree = SkillTree::find($skilltreeId);
+        }
+
+        $character = ModelCharacter::find($characterId);
+
+        if(isset($_GET['action']) && $_GET['action'] ==='save') {
+            return $this->saveSheet($character);
+        }
+
+        $skilltrees = SkillTree::getAll();
+
+        $postId = 612;
+        if($postId) {
+            $skillTree = SkillTree::find($postId);
+        }
+        else {
+            $skillTree = new SkillTree();
+        }
+
+
+
+        return $this->renderTemplate('layouts.character-sheet', [
+            'skilltrees' => $skilltrees,
+            'character' => $character,
+            'skilltreeId' => $skilltreeId,
+            'skilltree' => $skilltree,
+        ]);
     }
 
     public function save()

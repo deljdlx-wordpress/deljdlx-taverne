@@ -7,67 +7,6 @@ use Deljdlx\WPForge\Models\Post;
 
 
 
-// load all posts of type 'character'
-
-if(!isset($authorId)) {
-    $authorId = null;
-}
-
-$characters = [];
-$places = [];
-
-$types = [
-    'characters' => [
-        'type' => 'tav_character',
-        'instance' => Character::class,
-    ],
-    'places' => [
-        'type' => 'tav_place',
-        'instance' => Place::class,
-    ],
-];
-
-foreach($types as $index => $type) {
-    $options = [
-        'post_type' => $type,
-        'numberposts' => -1,
-        'orderby' => 'title',
-        'order' => 'ASC',
-        'author' => $authorId,
-        'post_status' => 'any',
-    ];
-    // if user is admin, get all posts
-    if(current_user_can('administrator')) {
-        unset($options['author']);
-    }
-
-    $className = $type['instance'];
-
-    $$index = $className::getByOptions($options);
-}
-
-
-// foreach($places as $place) {
-//     dump($place->getTitle());
-// }
-
-foreach($characters as $character) {
-    // dump($character);
-}
-
-foreach($characters as $character) {
-    // dump($character);
-
-    // $test = $character->find(210);
-
-    // dump($test);
-    // dump($test->ID);
-
-    // dump($character->getTitle());
-    // dump($character->ID);
-    // echo '<hr/>';
-}
-
 @endphp
 
 
@@ -82,6 +21,25 @@ foreach($characters as $character) {
         <a class="btn btn-neutral" href="{{ home_url() }}/my-dektop/calendar">Calendrier</a>
         <a class="btn btn-neutral" href="{{home_url('/my-desktop/character-edit')}}">Créer un nouveau personnage</a>
         <a class="btn btn-neutral" href="{{home_url('/my-desktop/place-edit')}}">Créer un nouveau lieu</a>
+        <a class="btn btn-neutral" href="{{ get_home_url() }}/my-dektop/skills-editor">Créer un nouveau arbre de compétences</a>
+    </section>
+
+    <section>
+        <h1>Arbres de compétences</h1>
+
+        <div class="list skilltrees-list">
+
+            @foreach($skilltrees as $skilltree)
+                <div class="card card-skilltree">
+                    <a href="{{ get_home_url() }}/my-dektop/skills-editor?id={{ $skilltree->getId() }}">
+                        <span class="content">
+                            {{$skilltree->getTitle()}}
+                        </span>
+                    </a>
+                </div>
+            @endforeach
+
+        </div>
     </section>
 
 

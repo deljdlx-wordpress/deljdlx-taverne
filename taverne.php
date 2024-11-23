@@ -9,6 +9,7 @@ namespace Deljdlx\WPTaverne;
 
 use Analog\Analog;
 use Analog\Handler\PDO as HandlerPDO;
+use Deljdlx\WPForge\Api\Image;
 use Deljdlx\WPForge\Container;
 use Deljdlx\WPForge\Theme\Theme;
 use Deljdlx\WPForge\View;
@@ -81,9 +82,16 @@ function container() {
             $container,
         );
 
+
+        $view->loadComponentsFromFolder(
+            __DIR__ . '/../deljdlx-forge/src/class/Components/',
+            'Deljdlx\WPForge\Components',
+        );
+
+
         $view->loadComponentsFromFolder(
             __DIR__ . '/src/class/Components/',
-            'Deljdlx\WPTaverne\\Components\\',
+            'Deljdlx\WPTaverne\Components',
         );
 
         return $view;
@@ -103,6 +111,9 @@ function container() {
 }
 
 // ===========================================================
+
+global $wpdb;
+
 // configure analog
 $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME;
 $username = DB_USER;
@@ -117,21 +128,14 @@ Analog::handler(HandlerPDO::init($pdo, $wpdb->prefix.'tav_logs'));
 $container = container();
 
 
-ModelsCharacter::register();
-ModelsPlace::register();
-Resource::register();
-Article::register();
-ModelsScenario::register();
-ScenarioEvent::register();
-Organization::register();
-Documentation::register();
 
-SkillTree::register();
 
 
 $taverne = new Taverne($container, __FILE__);
+
 $api = new Api($container, __FILE__);
 
+$imageApi = new Image($container, __FILE__);
 
 
 

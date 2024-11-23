@@ -19,8 +19,20 @@
                                 <div class="with-tooltip">
                                     <span x-text="node.text"></span>
                                     <template x-if="node.data.description">
-                                        <div class="tooltip" :data-tip="node.data.description">
-                                            <i class="fas fa-question-circle"></i>
+                                        <div class="dropdown ">
+                                            <div tabindex="0"><i class="fas fa-question-circle"></i></div>
+                                                <div
+                                                    tabindex="0"
+                                                    class="dropdown-content shadow"
+                                                >
+                                                    <div class="tooltip-content">
+                                                        <template x-if="node.data.illustration">
+                                                            <img :src="node.data.illustration"/>
+                                                        </template>
+                                                        <div  x-html="node.data.description"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </template>
                                 </div>
@@ -59,8 +71,20 @@
                             <div class="with-tooltip">
                                 <span x-text="node.text"></span>
                                 <template x-if="node.data.description">
-                                    <div class="tooltip" :data-tip="node.data.description">
-                                        <i class="fas fa-question-circle"></i>
+                                    <div class="dropdown ">
+                                        <div tabindex="0"><i class="fas fa-question-circle"></i></div>
+                                            <div
+                                                tabindex="0"
+                                                class="dropdown-content shadow"
+                                            >
+                                                <div class="tooltip-content">
+                                                    <template x-if="node.data.illustration">
+                                                        <img :src="node.data.illustration"/>
+                                                    </template>
+                                                    <div  x-html="node.data.description"></div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </template>
                             </div>
@@ -91,12 +115,24 @@
                             <div class="with-tooltip">
                                 <span x-text="node.text"></span>
                                 <template x-if="node.data.description">
-                                    <div class="tooltip" :data-tip="node.data.description">
-                                        <i class="fas fa-question-circle"></i>
+                                    <div class="dropdown ">
+                                        <div tabindex="0"><i class="fas fa-question-circle"></i></div>
+                                            <div
+                                                tabindex="0"
+                                                class="dropdown-content shadow"
+                                            >
+                                                <div class="tooltip-content">
+                                                    <template x-if="node.data.illustration">
+                                                        <img :src="node.data.illustration"/>
+                                                    </template>
+                                                    <div  x-html="node.data.description"></div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </template>
                             </div>
-                            <span x-text="computeValue(node)"></span>
+                            <span x-text="computeValue(node)" class="value"></span>
                         </div>
                     </template>
                 </div>
@@ -106,10 +142,10 @@
         </template>
     </div>
 
+    <hr/>
 
     <template x-if="ready">
-
-        <div>
+        <div style="margin-top: 1rem">
             <div class="available-points-container">
                 <h2>Compétences</h2>
                 <span class="available-points" x-text="availableSkillPoints"></span>
@@ -125,9 +161,30 @@
                                 <div x-data="{skill: getNodeById(skillId)}" class="skill-container">
                                     <div class="with-tooltip">
                                         <span x-text="skill.text"></span>
-                                        <template x-if="skill.data.description">
-                                            <div class="tooltip" :data-tip="skill.data.description">
-                                                <i class="fas fa-question-circle"></i>
+                                        <template x-if="skill.data.description || skill.data.value">
+                                            <div class="dropdown ">
+                                                <div tabindex="0"><i class="fas fa-question-circle"></i></div>
+                                                    <div
+                                                        tabindex="0"
+                                                        class="dropdown-content shadow"
+                                                    >
+                                                        <div class="tooltip-content">
+                                                            <template x-if="skill.data.illustration">
+                                                                <img :src="skill.data.illustration"/>
+                                                            </template>
+                                                            <template x-if="skill.data.value">
+                                                                <div>
+                                                                    Formule
+                                                                    <div x-html="skill.data.value"></div>
+                                                                </div>
+                                                            </template>
+
+                                                            <template x-if="skill.data.description">
+                                                                <div x-html="skill.data.description"></div>
+                                                            </template>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </template>
                                     </div>

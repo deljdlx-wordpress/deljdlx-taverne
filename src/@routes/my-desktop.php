@@ -1,6 +1,7 @@
 <?php
 
 use Deljdlx\WPTaverne\Controllers\Character;
+use Deljdlx\WPTaverne\Controllers\MyDesktop;
 use Deljdlx\WPTaverne\Controllers\SkillTree;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,20 @@ $router->addRoute(['GET', 'POST'], '/my-dektop/scenario-edit', function () {
 });
 
 
+$router->get('/my-dektop/character/sheet', function () {
+    $this->mustBeLogged();
+
+    $controller = new Character($this->container);
+    return $controller->sheet();
+
+    $buffer = $this->view->render('layouts.my-desktop.calendar', [
+        'authorId' => get_current_user_id(),
+    ]);
+
+    return $buffer;
+});
+
+
 $router->get('/my-dektop/calendar?$', function () {
     $this->mustBeLogged();
     $buffer = $this->view->render('layouts.my-desktop.calendar', [
@@ -40,6 +55,9 @@ $router->get('/my-dektop/calendar?$', function () {
 
 $router->get('/my-dektop/?$', function () {
     $this->mustBeLogged();
+
+    $controller = new MyDesktop($this->container);
+    return $controller->index();
 
     $buffer = $this->view->render('layouts.my-desktop.index', [
         'authorId' => get_current_user_id(),

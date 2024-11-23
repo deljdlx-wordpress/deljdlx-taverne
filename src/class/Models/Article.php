@@ -46,12 +46,12 @@ class Article extends Post
 
                 self::registerPostType(
                     static::$POST_TYPE,
-                    'Article Petit Parisien',
+                    'Articles',
                     [
                         'title',
                         'editor',
                     ],
-                    true,
+                    false,
                 );
 
 

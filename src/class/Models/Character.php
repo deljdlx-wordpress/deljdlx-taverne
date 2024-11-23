@@ -139,7 +139,7 @@ class Character extends TavEntity
                         // 'editor',
                         'thumbnail',
                     ],
-                    true,
+                    false,
                 );
 
 

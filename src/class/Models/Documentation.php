@@ -32,7 +32,7 @@ class Documentation extends TavEntity
                         'title',
                         'editor',
                     ],
-                    true,
+                    false,
                 );
 
 

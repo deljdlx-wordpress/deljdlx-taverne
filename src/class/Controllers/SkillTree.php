@@ -13,11 +13,18 @@ class SkillTree extends Base
     ];
 
     public static $appendJs = [
+        'vendor/quill/quill.js',
+
+        'vendor/ace-editor/src/ace.js',
+        'vendor/ace-editor/src/ext-language_tools.js',
         'assets/js/skilltree/SkillTree.js',
         'assets/js/skilltree/alpine.js',
         'assets/js/skilltree/editor.js',
     ];
 
+    public static $appendCss = [
+        'vendor/quill/quill.snow.css',
+    ];
 
 
     public function index()
@@ -47,6 +54,9 @@ class SkillTree extends Base
 
 
         $skillTreeName = $json['name'];
+        if(!$skillTreeName) {
+            $skillTreeName = 'New skill tree';
+        }
 
         if(isset($json['id']) && $json['id']) {
             $postId = $json['id'];
@@ -84,6 +94,7 @@ class SkillTree extends Base
 
         $json = json_encode($tree, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         $json = str_replace('\n', '\\\\n', $json);
+        $json = str_replace('"', '\"', $json);
         $skillTree->setField('json', $json);
 
 
