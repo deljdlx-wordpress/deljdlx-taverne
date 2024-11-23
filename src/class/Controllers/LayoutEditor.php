@@ -23,6 +23,7 @@ class LayoutEditor extends Base
         'plugin://deljdlx-taverne/assets/js/layout-editor/ComponentManagers/EchartManager.js',
         'plugin://deljdlx-taverne/assets/js/layout-editor/ComponentManagers/EchartPieManager.js',
         'plugin://deljdlx-taverne/assets/js/layout-editor/ComponentManagers/EchartRadarManager.js',
+        'plugin://deljdlx-taverne/assets/js/layout-editor/ComponentManagers/EchartScatterManager.js',
 
 
 

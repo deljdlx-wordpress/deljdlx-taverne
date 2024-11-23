@@ -1,5 +1,8 @@
 class EchartManager extends GenericComponentManager {
 
+
+  _chart;
+
   defaultColors = [
     '#FF6B6B',
     '#FFA351',
@@ -37,6 +40,9 @@ class EchartManager extends GenericComponentManager {
     contentElement.appendChild(echartContainer);
     contentElement.chart = echarts.init(echartContainer);
     contentElement.chart.setOption(options);
+
+
+    this._chart = contentElement.chart;
   }
 
   async prepareOptions () {

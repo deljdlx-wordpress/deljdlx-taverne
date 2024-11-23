@@ -20,7 +20,8 @@ class Sandbox extends Base
 
     public function index()
     {
-        return 'sandbox';
+        return $this->renderTemplate('layouts.sandbox', [
+        ]);
     }
 }
 

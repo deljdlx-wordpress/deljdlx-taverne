@@ -65,6 +65,12 @@
                     Radar chart
                 </div>
             </div>
+
+            <div class="draggable" data-component="echart-scatter">
+                <div>
+                    Scatter chart
+                </div>
+            </div>
         </div>
 
         <div>
@@ -130,6 +136,7 @@
             layoutEditor.addPlugin('echart-pie');
             layoutEditor.addPlugin('echart-donut');
             layoutEditor.addPlugin('echart-radar');
+            layoutEditor.addPlugin('echart-scatter');
 
             layoutEditor.addPlugin('datatable');
             layoutEditor.addPlugin('tinymce');

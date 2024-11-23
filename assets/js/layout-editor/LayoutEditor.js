@@ -170,10 +170,6 @@ class LayoutEditor {
       const tab = document.querySelector('#component-configuration-' + i);
 
       if(tab) {
-
-        console.log('%cLayoutEditor.js :: 177 =============================', 'color: #f00; font-size: 1rem');
-        console.log(tab);
-
         tab.innerHTML = '';
       }
     }
@@ -309,7 +305,7 @@ class LayoutEditor {
     const componentType = draggable.dataset.component;
 
     if(!this.registeredComponentTypes[componentType]) {
-      console.error(componentType + ' component typeis not registered');
+      console.error('"' + componentType + '" component type is not registered');
       console.log(this.registeredComponentTypes);
       return;
     }
