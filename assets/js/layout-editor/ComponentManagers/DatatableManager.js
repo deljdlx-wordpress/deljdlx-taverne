@@ -32,7 +32,7 @@ class DatableManager extends GenericComponentManager {
     head.appendChild(headerRow);
     for(let caption of data.headers) {
       const th = document.createElement('th');
-      th.innerHTML = caption;
+      th.innerHTML = this.interpolateValues(caption, data);;
       headerRow.appendChild(th);
     }
 
@@ -44,7 +44,8 @@ class DatableManager extends GenericComponentManager {
       for(let value of values) {
         const td = document.createElement('td');
         tr.appendChild(td);
-        td.innerHTML = value;
+        td.innerHTML = this.interpolateValues(value, data);
+        // td.innerHTML = value;
       }
     }
 

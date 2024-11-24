@@ -66,7 +66,7 @@
                 </div>
             </div>
 
-            <div class="draggable" data-component="echart-scatter">
+            <div class="draggable" data-component="graph-scatter">
                 <div>
                     Scatter chart
                 </div>
@@ -136,8 +136,8 @@
             layoutEditor.addPlugin('echart-pie');
             layoutEditor.addPlugin('echart-donut');
             layoutEditor.addPlugin('echart-radar');
-            layoutEditor.addPlugin('echart-scatter');
 
+            layoutEditor.addPlugin('graph-scatter');
             layoutEditor.addPlugin('datatable');
             layoutEditor.addPlugin('tinymce');
 

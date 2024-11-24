@@ -1,0 +1,63 @@
+.scatter-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.scatter-container {
+  position: relative;
+  /* background-color: #f0f5; */
+}
+
+.scatter-container .scatter-graph-container {
+  /* background-color: #f0f5; */
+  position: absolute;
+  border: solid 1px #aaa;
+}
+
+
+
+.scatter-container .axis {
+  position: absolute;
+  background-color: black;
+}
+.scatter-container .axis.x-axis {
+  height: 100%;
+}
+
+.scatter-container .axis.y-axis {
+  width: 100%;
+}
+
+.scatter-container .axis-label {
+  position: absolute;
+  text-align: center;
+}
+
+.scatter-container .scatter-point {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #f008;
+  border: solid 1px #aaa;
+}
+
+.scatter-container .scatter-point .tooltip {
+  display: none;
+  position: absolute;
+  left: 100%;
+  bottom: 100%;
+  z-index: 1000;
+
+  width: 200px;
+  height: auto;
+
+  border: solid 1px #aaa;
+  border-radius: 5px;
+  padding: 10px;
+
+  background-Color: #000a;
+
+}
+
+.scatter-container .scatter-point:hover .tooltip {
+  display: block;
+}

@@ -47,13 +47,4 @@
     };
 
     // ==========================================================================
-
-    LayoutEditor.plugins['echart-scatter'] = (layoutEditor) => {
-        layoutEditor.registerComponent('echart-scatter', () => {
-            const manager = new EchartScatterManager(layoutEditor, 'Scatter chart');
-            return manager;
-        });
-    };
-
-    // ==========================================================================
 })()

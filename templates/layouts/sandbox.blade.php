@@ -1,4 +1,4 @@
-<div  style="width: 900px; height: 789px; position: relative; border: 1px solid rgb(255, 0, 255);" id="layoutContainer">
+<div  style="width: 500px; height: 789px; position: relative; border: 1px solid rgb(255, 0, 255);" id="layoutContainer">
 
 
 </div>
@@ -22,7 +22,6 @@ function drawAxis(container) {
     const yAxis = document.createElement('div');
     yAxis.classList.add('axis', 'y-axis');
     yAxis.style.height = axisWidth + 'px';
-    yAxis.style.backgroundColor = 'black';
     yAxis.style.top = 'calc(50% - '+ axisWidth + 'px)';
     container.appendChild(yAxis);
 }
@@ -34,7 +33,7 @@ function drawAxisLabels(container, xMinLabel, xMaxLabel, yMinLabel, yMaxLabel) {
     xMaxLabelElement.classList.add('axis-label');
     xMaxLabelElement.innerHTML = xMaxLabel;
     xMaxLabelElement.style.right = '0';
-    xMaxLabelElement.style.height = height + 'px';
+    xMaxLabelElement.style.height = '100%';
     xMaxLabelElement.style.writingMode =' vertical-rl';
 
 
@@ -43,7 +42,7 @@ function drawAxisLabels(container, xMinLabel, xMaxLabel, yMinLabel, yMaxLabel) {
     xMinLabelElement.classList.add('axis-label');
     xMinLabelElement.innerHTML = xMinLabel;
     xMinLabelElement.style.left = '0';
-    xMinLabelElement.style.height = size + 'px';
+    xMinLabelElement.style.height = '100%';
     xMinLabelElement.style.writingMode =' vertical-rl';
 
 
@@ -65,11 +64,43 @@ function drawAxisLabels(container, xMinLabel, xMaxLabel, yMinLabel, yMaxLabel) {
 }
 
 
+function renderPoint(container, x, y) {
+    const point = document.createElement('div');
+    point.classList.add('scatter-point');
 
-const container = document.createElement('div');
-contentElement.appendChild(container);
+    point.style.width = dotSize + 'px';
+    point.style.height = dotSize + 'px';
+
+    point.style.left = 'calc(' + (x - xMin) / (xMax - xMin) * 100 + '%' + ' - ' + dotSize / 2 + 'px)';
+    point.style.bottom = 'calc(' + (y - yMin) / (yMax - yMin) * 100 + '%' + ' - ' + dotSize / 2 + 'px)';
+
+    container.appendChild(point);
+
+    return point;
+}
 
 
+function drawGrid(container, size, margin, gridSize) {
+    const gridContainer = document.createElement('div');
+    container.appendChild(gridContainer);
+    gridContainer.classList.add('scatter-graph-container');
+    gridContainer.style.width = (size - margin * 2) + 'px';
+    gridContainer.style.height = (size - margin * 2 ) + 'px';
+    gridContainer.style.top = margin + 'px';
+    gridContainer.style.left = margin + 'px';
+
+    // generate grid
+    gridContainer.style.backgroundSize = gridSize + 'px ' + gridSize + 'px';
+    gridContainer.style.backgroundImage = 'linear-gradient(to right, #0003 1px, transparent 1px), linear-gradient(to bottom, grey 1px, transparent 1px)';
+
+    return gridContainer;
+}
+
+
+
+const width = contentElement.clientWidth;
+const height = contentElement.clientHeight;
+const size = Math.min(width, height);
 
 
 const xMin = -15;
@@ -81,15 +112,16 @@ const margin = 50;
 const dividers = 15;
 
 
-const width = contentElement.clientWidth;
-const height = contentElement.clientHeight;
-const size = Math.min(width, height);
+const gridSize = (size - margin * 2) / (dividers % 2 ? dividers + 1 : dividers);
+const dotSize = 30;
+
+
+const container = document.createElement('div');
+container.classList.add('scatter-container');
+contentElement.appendChild(container);
 
 container.style.width = size +'px';
 container.style.height = size +'px';
-container.style.position = 'relative';
-container.style.border = 'solid 1px #f0f';
-container.style.backgroundColor = '#f0f5';
 
 drawAxisLabels(
     container,
@@ -100,29 +132,12 @@ drawAxisLabels(
 )
 
 
-const gridContainer = document.createElement('div');
-container.appendChild(gridContainer);
-gridContainer.classList.add('scatter-container');
-gridContainer.style.width = (size - margin * 2) + 'px';
-gridContainer.style.height = (size - margin * 2 ) + 'px';
-gridContainer.style.top = margin + 'px';
-gridContainer.style.left = margin + 'px';
-
-
-
-const gridSize = (size - margin * 2) / (dividers % 2 ? dividers + 1 : dividers);
-
-
-gridContainer.style.backgroundSize = gridSize + 'px ' + gridSize + 'px';
-gridContainer.style.backgroundImage = 'linear-gradient(to right, grey 1px, transparent 1px), linear-gradient(to bottom, grey 1px, transparent 1px)';
-gridContainer.style.backgroundColor = '#ff05';
+const gridContainer = drawGrid(container, size, margin, gridSize);
 
 
 drawAxis(gridContainer);
 
 
-
-const dotSize = 30;
 
 fetch('https://taverne-dev.jlb.ninja/generators/scatter.json.php')
     .then(response => response.json())
@@ -132,16 +147,8 @@ fetch('https://taverne-dev.jlb.ninja/generators/scatter.json.php')
             const x = item.value[0];
             const y = item.value[1];
 
-            const point = document.createElement('div');
-            point.classList.add('scatter-point');
 
-            point.style.width = dotSize + 'px';
-            point.style.height = dotSize + 'px';
-            point.style.backgroundColor = '#f009';
-            point.style.borderRadius = '50%';
-            point.style.left = 'calc(' + (x - xMin) / (xMax - xMin) * 100 + '%' + ' - ' + dotSize / 2 + 'px)';
-            point.style.bottom = 'calc(' + (y - yMin) / (yMax - yMin) * 100 + '%' + ' - ' + dotSize / 2 + 'px)';
-
+            const point = renderPoint(gridContainer, x, y);
 
             gridContainer.appendChild(point);
 
@@ -156,10 +163,19 @@ fetch('https://taverne-dev.jlb.ninja/generators/scatter.json.php')
 </script>
 
 <style>
+
+
 .scatter-container {
+    position: relative;
+    border: solid 1px #f0f;
+    background-color: #f0f5;
+}
+
+.scatter-graph-container {
     background-color: #f0f5;
     position: absolute;
     border: solid 1px #f00;
+    background-color: #0f05;
 }
 
 .axis {
@@ -182,6 +198,9 @@ fetch('https://taverne-dev.jlb.ninja/generators/scatter.json.php')
 
 .scatter-point {
     position: absolute;
+    border-radius: 50%;
+    background-color: #f008;
+    border: solid 1px #f00;
 }
 
 .scatter-point .tooltip {
@@ -197,7 +216,9 @@ fetch('https://taverne-dev.jlb.ninja/generators/scatter.json.php')
     border: solid 1px #f00;
     border-radius: 5px;
 
-    background-Color: #f0f5;
+    background-Color: #f0fa;
+
+    z-index: 1000;
 }
 
 .scatter-point:hover .tooltip {

@@ -16,6 +16,9 @@ class LayoutEditor extends Base
         'plugin://deljdlx-taverne/assets/vendor/datatable/datatable.js',
 
         'plugin://deljdlx-taverne/assets/js/layout-editor/LayoutEditor.js',
+
+        'plugin://deljdlx-taverne/assets/js/layout-editor/Components/ScatterGraph.js',
+
         'plugin://deljdlx-taverne/assets/js/layout-editor/ComponentManagers/GenericManager.js',
         'plugin://deljdlx-taverne/assets/js/layout-editor/ComponentManagers/DatatableManager.js',
         'plugin://deljdlx-taverne/assets/js/layout-editor/ComponentManagers/TinyMCEManager.js',
@@ -23,13 +26,15 @@ class LayoutEditor extends Base
         'plugin://deljdlx-taverne/assets/js/layout-editor/ComponentManagers/EchartManager.js',
         'plugin://deljdlx-taverne/assets/js/layout-editor/ComponentManagers/EchartPieManager.js',
         'plugin://deljdlx-taverne/assets/js/layout-editor/ComponentManagers/EchartRadarManager.js',
-        'plugin://deljdlx-taverne/assets/js/layout-editor/ComponentManagers/EchartScatterManager.js',
+        'plugin://deljdlx-taverne/assets/js/layout-editor/ComponentManagers/ScatterGraphManager.js',
 
 
 
         'plugin://deljdlx-taverne/assets/js/layout-editor/plugins/echarts.js',
         'plugin://deljdlx-taverne/assets/js/layout-editor/plugins/datatable.js',
         'plugin://deljdlx-taverne/assets/js/layout-editor/plugins/tinymce.js',
+
+        'plugin://deljdlx-taverne/assets/js/layout-editor/plugins/graph.js',
 
         'plugin://deljdlx-taverne/assets/js/layout-editor/plugins/ace-editor.js',
 
@@ -42,8 +47,10 @@ class LayoutEditor extends Base
 
         'plugin://deljdlx-taverne/assets/vendor/datatable/datatable.css',
 
-        'plugin://deljdlx-taverne/assets/js/layout-editor/layout-editor.css',
-        'plugin://deljdlx-taverne/assets/js/layout-editor/layout-viewer.css',
+        'plugin://deljdlx-taverne/assets/js/layout-editor/css/layout-editor.css',
+        'plugin://deljdlx-taverne/assets/js/layout-editor/css/layout-viewer.css',
+
+        'plugin://deljdlx-taverne/assets/js/layout-editor/css/graph.css',
     ];
 
 

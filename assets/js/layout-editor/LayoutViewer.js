@@ -13,7 +13,6 @@ class LayoutViewer
     const sharedDataContainer = document.querySelector('#sharedData');
     if(sharedDataContainer) {
       this.sharedData = JSON.parse(sharedDataContainer.value);
-      console.log('%cLayoutViewer.js :: 12 =============================', 'color: #f00; font-size: 1rem');
     }
 
     const components = document.querySelectorAll('.componentContainer');
@@ -48,21 +47,27 @@ class LayoutViewer
         else if(configuration.type === 'tinymce') {
           await this.renderHTML(componentContainer, configuration);
         }
+        else if(configuration.type === 'graph-scatter') {
+          await this.renderScatterGraph(componentContainer, configuration);
+        }
       }
     })
+  }
+
+  async renderScatterGraph(container, configuration) {
+    let data = await this.prepareData(configuration.data, configuration);
+    const graph = new ScatterGraph();
+
+    const contentContainer = container.querySelector('.componentContent');
+    graph.render(contentContainer, data);
   }
 
   async renderHTML(container, configuration) {
     let data = await this.prepareData(configuration.data, configuration);
     let html = configuration.html;
 
-    if(data) {
-      for(let key in data) {
-        let value = data[key];
-        html = html.replace(new RegExp('{{\s*' + key + '\s*}}', 'g'), value);
-      }
-    }
 
+    html = this.interpolateValues(html, data);
 
     const contentContainer = container.querySelector('.componentContent');
     contentContainer.innerHTML = html;
@@ -82,7 +87,7 @@ class LayoutViewer
     head.appendChild(headerRow);
     for(let caption of data.headers) {
       const th = document.createElement('th');
-      th.innerHTML = caption;
+      th.innerHTML = this.interpolateValues(caption, data);
       headerRow.appendChild(th);
     }
 
@@ -94,14 +99,9 @@ class LayoutViewer
       for(let value of values) {
         const td = document.createElement('td');
         tr.appendChild(td);
-        td.innerHTML = value;
+        td.innerHTML = this.interpolateValues(value, data);
       }
     }
-
-    // const titleElement = document.createElement('div');
-    // titleElement.innerHTML = manager.title;
-    // contentElement.appendChild(titleElement);
-
 
     const tableContainer = document.createElement('div');
     tableContainer.style.height='100%';

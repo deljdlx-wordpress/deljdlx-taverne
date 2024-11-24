@@ -95,6 +95,11 @@ class GenericComponentManager
 
 
   interpolateValues(content, data) {
+
+    if(typeof content !=='string') {
+      return content;
+    }
+
     for (let key in data) {
       let value = data[key];
       content = content.replace(new RegExp('{{\s*' + key + '\s*}}', 'g'), value);
