@@ -42,7 +42,6 @@ if(!is_dir(__DIR__ . '/../deljdlx-forge')) {
 
 require_once __DIR__ . '/../deljdlx-forge/jdlx-forge.php';
 require_once __DIR__ . '/composer/autoload.php';
-require_once __DIR__ . '/embedded-plugins/kirki/kirki.php';
 
 if(!is_dir(__DIR__ . '/cache')) {
     mkdir(__DIR__ . '/cache');
@@ -58,14 +57,14 @@ function container() {
         return $container;
     }
 
-    $container = new Container();
+    $container = Container::getInstance();
     $cachePath = __DIR__ . '/cache';
 
     if(!is_dir($cachePath)) {
         mkdir($cachePath);
     }
 
-    $container->bindIf('config', function () use ($cachePath) {
+    $container->bindOrMerge('config', function () use ($cachePath) {
         return new Repository([
             'view' => [
                 'paths' => [
@@ -77,17 +76,13 @@ function container() {
         ]);
     }, true);
 
-    $container->bindIf(View::class, function () use ($container) {
-        $view = new View(
-            $container,
-        );
-
+    $container->bind(View::class, function () use ($container) {
+        $view = View::getInstance($container,);
 
         $view->loadComponentsFromFolder(
             __DIR__ . '/../deljdlx-forge/src/class/Components/',
             'Deljdlx\WPForge\Components',
         );
-
 
         $view->loadComponentsFromFolder(
             __DIR__ . '/src/class/Components/',
@@ -98,10 +93,8 @@ function container() {
 
     }, true);
 
-    $container->bindIf(Theme::class, function ($container) {
-        $theme = new Theme(
-            $container
-        );
+    $container->bind(Theme::class, function ($container) {
+        $theme = Theme::getInstance($container);
 
         return $theme;
 

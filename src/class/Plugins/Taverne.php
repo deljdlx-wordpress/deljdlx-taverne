@@ -19,11 +19,14 @@ use Deljdlx\WPTaverne\Models\SkillTree;
 
 class Taverne extends Plugin
 {
+    public static $instance;
+
     public static function run()
     {
         $instance = static::getInstance();
 
         try {
+
             $result = $instance->router->route();
 
             if($result) {
@@ -45,12 +48,10 @@ class Taverne extends Plugin
     public function __construct(Container $container,$bootstrapFile = null)
     {
         parent::__construct($container,$bootstrapFile);
-        $this->router = new Router();
+        $this->router = Router::getInstance();
 
         $router = $this->router;
 
-
-        include $this->filepath . '/src/@routes/layout-editor.php';
         include $this->filepath . '/src/@routes/my-desktop.php';
         include $this->filepath . '/src/@routes/__default.php';
 

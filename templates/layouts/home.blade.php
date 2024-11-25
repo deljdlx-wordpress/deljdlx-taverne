@@ -1,4 +1,8 @@
-@extends('layouts/common/with-right-column')
+{{-- @extends('layouts/common/with-right-column') --}}
+
+@extends('layouts/common/foo')
+
+
 @section('page-title')
     Accueil
 @endsection
