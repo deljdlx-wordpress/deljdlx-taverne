@@ -15,8 +15,9 @@ class SkillTree extends Base
     public static $appendJs = [
         'vendor/quill/quill.js',
 
-        'vendor/ace-editor/src/ace.js',
-        'vendor/ace-editor/src/ext-language_tools.js',
+        'plugin://deljdlx-forge/vendor/ace-editor/src/ace.js',
+        'plugin://deljdlx-forge/vendor/ace-editor/src/ext-language_tools.js',
+
         'assets/js/skilltree/SkillTree.js',
         'assets/js/skilltree/alpine.js',
         'assets/js/skilltree/editor.js',
