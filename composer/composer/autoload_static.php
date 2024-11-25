@@ -4,11 +4,9 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit516aa046234963da149b0467682acfce
+class ComposerStaticInit0715f969273d6c6b5054d007dd8e38f0
 {
     public static $files = array (
-        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'd6827b35d35e6c9602a5210955a293b7' => __DIR__ . '/..' . '/matthieumastadenis/couleur/src/utils/utils.php',
         '22ec25e297fb2b306362a6648903e129' => __DIR__ . '/..' . '/matthieumastadenis/couleur/src/utils/css/conversions.php',
         '8de1da307966be5c44353a9c1af7ffb4' => __DIR__ . '/..' . '/matthieumastadenis/couleur/src/utils/css/utils.php',
@@ -44,23 +42,12 @@ class ComposerStaticInit516aa046234963da149b0467682acfce
         '46855b1fce55ccfe12513fa05b3d53bb' => __DIR__ . '/..' . '/matthieumastadenis/couleur/src/utils/xyzD50/utils.php',
         'ad08779616ed7c415fcc8703ec1bdc7f' => __DIR__ . '/..' . '/matthieumastadenis/couleur/src/utils/xyzD65/conversions.php',
         '8fe8468ad95f1366b7a99c72cebc8e60' => __DIR__ . '/..' . '/matthieumastadenis/couleur/src/utils/xyzD65/utils.php',
-        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'm' => 
         array (
             'matthieumastadenis\\couleur\\' => 27,
-        ),
-        'S' => 
-        array (
-            'Symfony\\Polyfill\\Mbstring\\' => 26,
-            'Symfony\\Component\\VarDumper\\' => 28,
-        ),
-        'P' => 
-        array (
-            'Psr\\Log\\' => 8,
-            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'M' => 
         array (
@@ -77,22 +64,6 @@ class ComposerStaticInit516aa046234963da149b0467682acfce
         array (
             0 => __DIR__ . '/..' . '/matthieumastadenis/couleur/src',
         ),
-        'Symfony\\Polyfill\\Mbstring\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
-        ),
-        'Symfony\\Component\\VarDumper\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/var-dumper',
-        ),
-        'Psr\\Log\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/log/src',
-        ),
-        'PHPMailer\\PHPMailer\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
-        ),
         'Michelf\\' => 
         array (
             0 => __DIR__ . '/..' . '/michelf/php-markdown/Michelf',
@@ -103,16 +74,6 @@ class ComposerStaticInit516aa046234963da149b0467682acfce
         ),
     );
 
-    public static $prefixesPsr0 = array (
-        'A' => 
-        array (
-            'Analog' => 
-            array (
-                0 => __DIR__ . '/..' . '/analog/analog/lib',
-            ),
-        ),
-    );
-
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -120,10 +81,9 @@ class ComposerStaticInit516aa046234963da149b0467682acfce
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit516aa046234963da149b0467682acfce::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit516aa046234963da149b0467682acfce::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit516aa046234963da149b0467682acfce::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit516aa046234963da149b0467682acfce::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0715f969273d6c6b5054d007dd8e38f0::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0715f969273d6c6b5054d007dd8e38f0::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit0715f969273d6c6b5054d007dd8e38f0::$classMap;
 
         }, null, ClassLoader::class);
     }
