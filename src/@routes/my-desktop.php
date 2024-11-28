@@ -30,18 +30,34 @@ $router->addRoute(['GET', 'POST'], '/my-dektop/scenario-edit', function () {
 });
 
 
+// ===========================================================
+
+$router->get('/my-dektop/character/sheet/get-data', function () {
+    $this->mustBeLogged();
+
+    $controller = new Character($this->container);
+    return $controller->getSheetData();
+});
+
+
+$router->post('/my-dektop/character/sheet/save', function () {
+    $this->mustBeLogged();
+
+    $controller = new Character($this->container);
+    return $controller->saveSheet();
+});
+
+
 $router->get('/my-dektop/character/sheet', function () {
     $this->mustBeLogged();
 
     $controller = new Character($this->container);
     return $controller->sheet();
-
-    $buffer = $this->view->render('layouts.my-desktop.calendar', [
-        'authorId' => get_current_user_id(),
-    ]);
-
-    return $buffer;
 });
+
+// ===========================================================
+
+
 
 
 $router->get('/my-dektop/calendar?$', function () {

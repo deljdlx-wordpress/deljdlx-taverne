@@ -6,8 +6,6 @@
 @section('body-content')
 
 
-<x-exemple>test</x-exemple>
-
 @if(!$skilltreeId)
     <h1>Sélectionner un arbre de compétence</h1>
     <select class="select select-bordered w-full max-w-xs" id="skilltreeSelector">
@@ -33,8 +31,8 @@
 
 
 
-        <input id="character-id" value="{{ $character->ID }}" type="hiddene">
-        <input id="skilltree-id" value="{{ $skilltree->ID }}" type="hiddene">
+        <input id="character-id" value="{{ $character->ID }}" type="hidden">
+        <input id="skilltree-id" value="{{ $skilltree->ID }}" type="hidden">
 
 
         @include('partials.skilltree.viewer')

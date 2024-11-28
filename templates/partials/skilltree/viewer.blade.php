@@ -82,6 +82,12 @@
                                                         <img :src="node.data.illustration"/>
                                                     </template>
                                                     <div  x-html="node.data.description"></div>
+
+                                                    <div x-show="node.data.modifiers">
+                                                        <hr/>
+                                                        <div>Modificateurs</div>
+                                                        <pre  x-html="node.data.modifiers"></pre>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,17 +99,29 @@
 
 
 
-                            <input @click="
-                            if(!values[node.data.code]) {
-                                if(!availablePerks) {
-                                    values[node.data.code] = false;
-                                }
-                                else {
-                                    availablePerks--;
-                                }
-                            } else {
-                                availablePerks++;
-                            }" type="checkbox" x-model="values[node.data.code]" :checked="values[node.data.code]" :disabled="!values[node.data.code] && !availablePerks" class="checkbox checkbox-primary"/>
+                            <input
+                                @click="
+                                    if(!values[node.data.code]) {
+                                        if(!availablePerks) {
+                                            values[node.data.code] = false;
+                                        }
+                                        else {
+                                            availablePerks--;
+                                        }
+                                    } else {
+                                        availablePerks++;
+                                    };
+
+                                    if(typeof(save) === 'function') {
+                                        save();
+                                    }
+                                "
+                                type="checkbox"
+                                x-model="values[node.data.code]"
+                                :checked="values[node.data.code]"
+                                :disabled="!values[node.data.code] && !availablePerks"
+                                class="checkbox checkbox-primary"
+                            />
                         </div>
                     </template>
                 </div>

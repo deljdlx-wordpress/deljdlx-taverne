@@ -1,7 +1,16 @@
 @php
+
+    use Deljdlx\WPTaverne\Models\SkillTree;
+
     $authorId = get_the_author_meta('ID');
     $currentUserId = get_current_user_id();
     $isAdmin = current_user_can('administrator');
+
+
+    $skilltrees = SkillTree::getAll();
+    $skilltree = reset($skilltrees);
+
+    // dump($skilltree);
 
 @endphp
 
@@ -25,13 +34,9 @@
         <div>
             @php
 
-                if (!empty($_GET)) {
-                    $url = $character->getPermalink() . '&sheet=1';
-                } else {
-                    $url = $character->getPermalink() . '?sheet=1';
-                }
+
             @endphp
-            <a href="{{ $url }}">Fiche de personnage</a>
+            <a href="{{ get_home_url() }}/my-dektop/character/sheet?id={{ $character->ID }}&skilltree={{ $skilltree->ID }}">Fiche de personnage</a>
             @if ($currentUserId == $authorId || $isAdmin)
                 | <a href="/my-desktop/character-edit?&id={{ $character->ID }}">Editer</a>
             @endif

@@ -31,6 +31,11 @@
 
 <body class="taverne @yield('body-css-class')" data-theme="autumn">
 
+    <div id="loader">
+        <span class="loading loading-ring loading-lg"></span>
+        <div>Chargement</div>
+    </div>
+
     <dialog id="modal_main" class="modal" style="">
         <div class="modal-box">
             <div id="modal_main__content"></div>

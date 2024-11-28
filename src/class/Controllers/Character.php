@@ -2,18 +2,19 @@
 namespace Deljdlx\WPTaverne\Controllers;
 
 use Deljdlx\WPTaverne\Models\Character as ModelCharacter;
+use Deljdlx\WPTaverne\Models\CharacterSkills;
 use Deljdlx\WPTaverne\Models\SkillTree;
 
 class Character extends Base
 {
     public static $prependJs = [
-        'https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js'
+        'plugin://deljdlx-taverne/vendor/echart.js',
     ];
 
     public static $appendJs = [
-        'assets/js/skilltree/SkillTree.js',
-        'assets/js/skilltree/alpine.js',
-        'assets/js/skilltree/viewer.js',
+        'plugin://deljdlx-taverne/assets/skilltree/SkillTree.js',
+        'plugin://deljdlx-taverne/assets/skilltree/alpine.js',
+        'plugin://deljdlx-taverne/assets/skilltree/viewer.js',
     ];
 
     public function index($post)
@@ -32,6 +33,57 @@ class Character extends Base
         }
     }
 
+
+    public function saveSheet()
+    {
+        $buffer = file_get_contents('php://input');
+        $data = json_decode($buffer, true);
+
+        $characterId = $data['characterId'];
+        $skilltreeId = $data['skilltreeId'];
+        $data = $data['data'];
+
+        // find characterSkillModel by characterId and skilltreeId
+        $characterSkillModel = CharacterSkills::where('character_id', $characterId)
+            ->where('skilltree_id', $skilltreeId)
+            ->first();
+
+        if(!$characterSkillModel) {
+            $characterSkillModel = new CharacterSkills();
+            $characterSkillModel->character_id = $characterId;
+            $characterSkillModel->skilltree_id = $skilltreeId;
+        }
+
+        $characterSkillModel->json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        $characterSkillModel->save();
+
+        header('Content-type: application/json');
+
+        return json_encode($characterSkillModel);
+    }
+
+    public function getSheetData() {
+        $request = $this->getRequest();
+        $characterId = $request->input('characterId');
+        $skilltreeId = $request->input('skilltreeId');
+        $characterSkillModel = CharacterSkills::where('character_id', $characterId)
+            ->where('skilltree_id', $skilltreeId)
+            ->first();
+
+            $json = 'null';
+
+        if($characterSkillModel) {
+            $json = $characterSkillModel->json;
+        }
+
+
+        header('Content-type: application/json');
+        return $json;
+
+
+
+    }
+
     public function sheet()
     {
 
@@ -47,6 +99,9 @@ class Character extends Base
         if(isset($_GET['action']) && $_GET['action'] ==='save') {
             return $this->saveSheet($character);
         }
+
+
+        $skillTree = null;
 
         $skilltrees = SkillTree::getAll();
 
@@ -64,7 +119,7 @@ class Character extends Base
             'skilltrees' => $skilltrees,
             'character' => $character,
             'skilltreeId' => $skilltreeId,
-            'skilltree' => $skilltree,
+            'skilltree' => $skillTree,
         ]);
     }
 
@@ -118,20 +173,20 @@ class Character extends Base
         ]);
     }
 
-    private function saveSheet($character)
-    {
-        $post = file_get_contents('php://input');
-        $data = json_decode($post);
+    // private function saveSheet($character)
+    // {
+    //     $post = file_get_contents('php://input');
+    //     $data = json_decode($post);
 
-        if(!$data) {
-            return 1;
-        }
+    //     if(!$data) {
+    //         return 1;
+    //     }
 
-        $buffer =  json_encode($data, JSON_PRETTY_PRINT);
+    //     $buffer =  json_encode($data, JSON_PRETTY_PRINT);
 
-        update_field('json', $buffer, $character->ID);
-        return $buffer;
-        // return;
-    }
+    //     update_field('json', $buffer, $character->ID);
+    //     return $buffer;
+    //     // return;
+    // }
 }
 
