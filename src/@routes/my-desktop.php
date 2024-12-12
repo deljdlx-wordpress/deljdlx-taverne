@@ -6,20 +6,20 @@ use Deljdlx\WPTaverne\Controllers\SkillTree;
 use Illuminate\Http\Request;
 
 
-$router->addRoute(['GET',], '/my-dektop/skills-editor', function () {
+$router->addRoute(['GET',], '/my-desktop/skills-editor', function () {
     $this->mustBeLogged();
     $controller = new SkillTree($this->container);
     return $controller->index();
 }, 'skills-editor-index');
 
 
-$router->addRoute(['POST'], '/my-dektop/skills-editor', function () {
+$router->addRoute(['POST'], '/my-desktop/skills-editor', function () {
     $controller = new SkillTree($this->container);
     return $controller->save();
 }, 'skills-editor-save');
 
 
-$router->addRoute(['GET', 'POST'], '/my-dektop/scenario-edit', function () {
+$router->addRoute(['GET', 'POST'], '/my-desktop/scenario-edit', function () {
     $this->mustBeLogged();
 
     $buffer = $this->view->render('layouts.my-desktop.scenario-edit', [
@@ -32,7 +32,7 @@ $router->addRoute(['GET', 'POST'], '/my-dektop/scenario-edit', function () {
 
 // ===========================================================
 
-$router->get('/my-dektop/character/sheet/get-data', function () {
+$router->get('/my-desktop/character/sheet/get-data', function () {
     $this->mustBeLogged();
 
     $controller = new Character($this->container);
@@ -40,7 +40,7 @@ $router->get('/my-dektop/character/sheet/get-data', function () {
 });
 
 
-$router->post('/my-dektop/character/sheet/save', function () {
+$router->post('/my-desktop/character/sheet/save', function () {
     $this->mustBeLogged();
 
     $controller = new Character($this->container);
@@ -48,7 +48,7 @@ $router->post('/my-dektop/character/sheet/save', function () {
 });
 
 
-$router->get('/my-dektop/character/sheet', function () {
+$router->get('/my-desktop/character/sheet', function () {
     $this->mustBeLogged();
 
     $controller = new Character($this->container);
@@ -60,7 +60,7 @@ $router->get('/my-dektop/character/sheet', function () {
 
 
 
-$router->get('/my-dektop/calendar?$', function () {
+$router->get('/my-desktop/calendar?$', function () {
     $this->mustBeLogged();
     $buffer = $this->view->render('layouts.my-desktop.calendar', [
         'authorId' => get_current_user_id(),
@@ -69,7 +69,7 @@ $router->get('/my-dektop/calendar?$', function () {
     return $buffer;
 });
 
-$router->get('/my-dektop/?$', function () {
+$router->get('/my-desktop/?$', function () {
     $this->mustBeLogged();
 
     $controller = new MyDesktop($this->container);

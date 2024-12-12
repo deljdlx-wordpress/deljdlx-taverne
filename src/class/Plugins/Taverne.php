@@ -28,24 +28,26 @@ class Taverne extends Plugin
         try {
 
             $result = $instance->router->route();
-
             if($result) {
-                http_response_code(200);
-                echo $result;
-                return true;
+                // http_response_code(200);
+                // echo $result;
+                return $result;
             }
             else {
-                // echo wp_forge()->view->render('layouts.home');
+                return '';
+                throw new \Exception('Page not found');
+
+                
                 $constroller = new PageNotFound($instance->getContainer());
                 echo $constroller->index();
             }
         }
         catch(\Exception $e) {
-            dump($e);
+            throw $e;
         }
     }
 
-    public function __construct(Container $container,$bootstrapFile = null)
+    public function __construct($container,$bootstrapFile = null)
     {
         parent::__construct($container,$bootstrapFile);
         $this->router = Router::getInstance();

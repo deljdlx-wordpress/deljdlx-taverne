@@ -1,6 +1,6 @@
-{{-- @extends('layouts/common/with-right-column') --}}
+@extends('layouts/common/with-right-column')
 
-@extends('layouts/common/foo')
+{{-- @extends('layouts/common/foo') --}}
 
 
 @section('page-title')
@@ -11,7 +11,6 @@
 
 {{wp_forge()->sidebar->render('home-top')}}
 
-<h1 class="section-title-1">Les dernières informations</h1>
 <div class="articles-list">
     @foreach($articles as $article)
         <div class="card-article {{$article->getField('is_published') ? 'published' : 'unpublished'}}">
@@ -42,7 +41,7 @@
             @if($article->getField('illustration'))
                 <div>
             @else
-                <div style="column-count: 3;">
+                <div class="column-text">
             @endif
 
                 <div>

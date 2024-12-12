@@ -17,7 +17,7 @@
     <div>
 
         <h1 class="flex items-baseline">
-            <a href="{{ get_home_url() }}/my-dektop"><i class="fas fa-home"></i></a>
+            <a href="{{ get_home_url() }}/my-desktop"><i class="fas fa-home"></i></a>
 
             <span>Arbre de compétences</span>
             <a href="{{ $skillTree->getPermalink() }}" target="_blank">
@@ -32,7 +32,7 @@
 
 
         <div class="grid grid-cols-12 gap-2">
-            <div class="col-span-3 p-2" style="border: solid 2px #f0f; min-height: 300px">
+            <div class="col-span-6 p-2" style="border: solid 2px #f0f; min-height: 300px">
                 <div id="skill-tree"></div>
 
                 <div>
@@ -43,7 +43,7 @@
 
 
 
-            <div class="col-span-3 p-2" style="border: solid 2px #f0f; min-height: 300px">
+            <div class="col-span-6 p-2" style="border: solid 2px #f0f; min-height: 300px">
                 <template x-if="selectedNode">
                     <template x-if="selectedNode.id !== 'root'">
                         <form id="skill-editor">
@@ -118,7 +118,7 @@
                 </template>
             </div>
 
-            <div class="col-span-6 p-2" style="border: solid 2px #f0f; min-height: 300px">
+            <div class="col-span-3 p-2" style="border: solid 2px #f0f; min-height: 300px">
                 @include('partials.skilltree.viewer')
             </div>
         </div>

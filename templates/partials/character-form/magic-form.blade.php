@@ -1,4 +1,4 @@
-<div class="magic-form" style="display: flex">
+<div class="magic-form flex">
     <label class="input input-bordered flex items-center gap-2" style="flex-grow:1">
         <input type="text" class="grow magic-prompt" placeholder="Magie !" id="{{$variable}}-prompt" data-variable="{{$variable}}"/>
     </label>

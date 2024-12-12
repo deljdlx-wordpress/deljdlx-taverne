@@ -36,7 +36,7 @@
 
 
             @endphp
-            <a href="{{ get_home_url() }}/my-dektop/character/sheet?id={{ $character->ID }}&skilltree={{ $skilltree->ID }}">Fiche de personnage</a>
+            <a href="{{ get_home_url() }}/my-desktop/character/sheet?id={{ $character->ID }}&skilltree={{ $skilltree->ID }}">Fiche de personnage</a>
             @if ($currentUserId == $authorId || $isAdmin)
                 | <a href="/my-desktop/character-edit?&id={{ $character->ID }}">Editer</a>
             @endif
@@ -175,7 +175,7 @@
     @endif
 
     @if (!empty($character->getPlaces()))
-        <div class="character-section">
+        <div class="list characters-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             @include('partials.singular.section-places', [
                 'places' => $character->getPlaces(),
             ])

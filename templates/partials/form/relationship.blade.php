@@ -21,7 +21,6 @@ $options = [
 ];
 
 $posts = get_posts($options);
-
 $instances = [];
 
 foreach($posts as $post) {

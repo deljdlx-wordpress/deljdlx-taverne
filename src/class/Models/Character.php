@@ -160,7 +160,7 @@ class Character extends TavEntity
         // create a new post of type character
         $post_id = wp_insert_post([
             'post_title' => $title,
-            'post_type' => 'character',
+            'post_type' => static::$POST_TYPE,
             'post_status' => 'draft',
         ]);
         $post = get_post($post_id);

@@ -17,23 +17,24 @@
 
 
     <fieldset>
-        <h2>Profil MBTI</h2>
-        <input name="mbti" type="text" class="input input-bordered input-primary w-full" placeholder=""
-            value="{{$character->getField('mbti')}}"
-        />
+        <label>
+            <h2>Profil MBTI</h2>
+            <input name="mbti" type="text" class="input input-bordered input-primary w-full" placeholder=""
+                value="{{$character->getField('mbti')}}"
+            />
+        </label>
     </fieldset>
 
 
 
     <fieldset>
 
-        <div class="form-control" style="width: 300px">
-            <label class="label cursor-pointer">
-                <h2>Personnage non joueur
-                    <input type="checkbox" class="checkbox"
-                        name="is_npc" value="1" {{$character->getField('is_npc') ? 'checked' : '' }}
-                    />
-                </h2>
+        <div class="form-control">
+            <label class="flex cursor-pointer gap-2" style="align-items: center; justify-content: flex-start">
+                <h2>Personnage non joueur</h2>
+                <input type="checkbox" class="checkbox-primary checkbox-lg"
+                    name="is_npc" value="1" {{$character->getField('is_npc') ? 'checked' : '' }}
+                />
             </label>
           </div>
 

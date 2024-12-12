@@ -27,8 +27,8 @@ initializeSkillTree = async function () {
         },
 
         availableAttributePoints: 10,
-        availableSkillPoints: 100,
-        availablePerks: 2,
+        availableSkillPoints: 200,
+        availablePerks: 3,
 
 
         treeData: [{
@@ -39,6 +39,13 @@ initializeSkillTree = async function () {
                 code: 'ROOT',
             },
             "children": [
+                {
+                    text: "Variables", type: "category-variables", id: "category-variables",
+                    data: {
+                        code: '',
+                    },
+                    children: []
+                },
                 {
                     text: "Attributes", type: "category-attributes", id: "category-attributes",
                     data: {
@@ -195,11 +202,11 @@ initializeSkillTree = async function () {
                 reactiveData.treeData = response.data;
             }
 
-            skillEditor = new SkillEditor(reactiveData);
+            skillEditor = new SkillTree(reactiveData);
             skillEditor.render();
         });
     } else {
-        skillEditor = new SkillEditor(reactiveData);
+        skillEditor = new SkillTree(reactiveData);
         skillEditor.render();
     }
 

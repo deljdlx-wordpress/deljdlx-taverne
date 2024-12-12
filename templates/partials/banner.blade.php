@@ -19,8 +19,8 @@
 
     <span class="side-left">
         <a href="{{ home_url() }}/tav_documentation">Documentation</a>
-        <a href="{{ home_url() }}/timeline">Timeline</a>
-        <a href="{{ home_url() }}/mindmap">Mind map</a>
+        {{-- <a href="{{ home_url() }}/timeline">Timeline</a>
+        <a href="{{ home_url() }}/mindmap">Mind map</a> --}}
     </span>
 
     <span class="side-right">
@@ -28,7 +28,7 @@
             <a href="{{ home_url() }}/sign-up">S'inscrire</a>
             <a href="{{ home_url() }}/sign-in">Se connecter</a>
         @else
-            <a href="{{ home_url() }}/my-dektop">Mon bureau</a>
+            <a href="{{ home_url() }}/my-desktop">Mon bureau</a>
         @endif
 
         <span class="burger-trigger dashicons dashicons-menu"></span>

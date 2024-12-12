@@ -22,14 +22,9 @@
             window.location.href = document.location + '&skilltree=' + e.target.value;
         });
     </script>
-
-
-
 @else
 
     <div x-data="application" class="skill-tree-editor">
-
-
 
         <input id="character-id" value="{{ $character->ID }}" type="hidden">
         <input id="skilltree-id" value="{{ $skilltree->ID }}" type="hidden">

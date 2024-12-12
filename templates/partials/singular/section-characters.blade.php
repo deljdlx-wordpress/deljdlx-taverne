@@ -1,9 +1,9 @@
 <section class="section">
     <h2>Personnages associés</h2>
-    <ul class="list">
+    <div class="list characters-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
     @foreach($characters as $character)
 
-        <li class="card card-place">
+        <div class="card card-character">
             <a href="{{$character->getPermalink()}}">
 
                 @if($character->getField('illustration'))
@@ -14,7 +14,7 @@
 
                 <div class="name">{{ $character->getField('name')}}</sdiv>
             </a>
-        </li>
+        </div>
     @endforeach
-    </ul>
+    </div>
 </section>

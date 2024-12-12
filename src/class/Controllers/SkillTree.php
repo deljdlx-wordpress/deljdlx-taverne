@@ -19,8 +19,9 @@ class SkillTree extends Base
         'plugin://deljdlx-forge/vendor/ace-editor/src/ext-language_tools.js',
 
         'plugin://deljdlx-taverne/assets/skilltree/SkillTree.js',
-        'plugin://deljdlx-taverne/assets/skilltree/alpine.js',
-        'plugin://deljdlx-taverne/assets/skilltree/editor.js',
+        'plugin://deljdlx-taverne/assets/skilltree/SkilltreeEditor.js',
+
+        'plugin://deljdlx-taverne/assets/skilltree/store.js',
     ];
 
     public static $appendCss = [

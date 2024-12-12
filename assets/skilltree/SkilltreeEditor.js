@@ -2,6 +2,7 @@ class SkilltreeEditor
 {
 
     skillTtree = null;
+    freeEditMode = false;
 
     constructor(skillTtree) {
         this.skillTtree = skillTtree;
@@ -41,6 +42,11 @@ class SkilltreeEditor
 
         this.handleIllustrationPaste();
     }
+
+    enableFreeEditMode() {
+        this.freeEditMode = true;
+        this.skillTtree.enableFreeEditMode();;
+      }
 
     async handleNodeSelection(event, data) {
 
@@ -279,6 +285,7 @@ document.addEventListener('alpine:init', async () => {
 
     let skillEditor = await initializeSkillTree();
     let editor = new SkilltreeEditor(skillEditor);
+    editor.enableFreeEditMode();
 
     // ===========================
 

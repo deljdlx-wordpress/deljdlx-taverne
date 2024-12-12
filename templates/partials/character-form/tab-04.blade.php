@@ -13,7 +13,7 @@ foreach($character->getCharacters() as $related) {
     <fieldset>
         <h2>Personnages associés</h2>
         @include('partials.form.relationship', [
-            'type' => 'character',
+            'type' => 'tav_character',
             'name' => 'characters[]',
             'values' => $relatedCharacterIds
         ])

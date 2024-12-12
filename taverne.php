@@ -13,22 +13,11 @@ use Deljdlx\WPForge\Api\Image;
 use Deljdlx\WPForge\Container;
 use Deljdlx\WPForge\Theme\Theme;
 use Deljdlx\WPForge\View;
-use Deljdlx\WPTaverne\Models\Article;
-use Deljdlx\WPTaverne\Models\Character as ModelsCharacter;
-use Deljdlx\WPTaverne\Models\Documentation;
-use Deljdlx\WPTaverne\Models\Organization;
-use Deljdlx\WPTaverne\Models\Place as ModelsPlace;
-use Deljdlx\WPTaverne\Models\Resource;
-use Deljdlx\WPTaverne\Models\Scenario as ModelsScenario;
-use Deljdlx\WPTaverne\Models\ScenarioEvent;
-use Deljdlx\WPTaverne\Models\SkillTree;
+
 use Deljdlx\WPTaverne\Plugins\Api;
-use Deljdlx\WPTaverne\Plugins\Character;
-use Deljdlx\WPTaverne\Plugins\Place;
-use Deljdlx\WPTaverne\Plugins\Scenario;
 use Deljdlx\WPTaverne\Plugins\Taverne;
-use Illuminate\Config\Repository;
 use PDO;
+
 
 if(!is_dir(__DIR__ . '/../deljdlx-forge')) {
     // display a wordpress  error message
@@ -57,24 +46,46 @@ function container() {
         return $container;
     }
 
-    $container = Container::getInstance();
-    $cachePath = __DIR__ . '/cache';
+
+    // $container = Container::getInstance();
+
+    $wpContentDir = __DIR__ . '/../../';
+    $cachePath = $wpContentDir . '/cache';
 
     if(!is_dir($cachePath)) {
         mkdir($cachePath);
     }
 
-    $container->bindOrMerge('config', function () use ($cachePath) {
-        return new Repository([
-            'view' => [
-                'paths' => [
-                    get_template_directory() . '/templates',
-                    __DIR__ . '/templates',
-                ],
-                'compiled' => $cachePath,
-            ]
-        ]);
-    }, true);
+    $container = app();
+
+
+    // FacadesView::addNamespace('custom', __DIR__ . '/templates');
+
+    // dump($container);
+
+    $pathes = $container->config->get('view')['paths'];
+    $pathes[] = __DIR__ . '/templates';
+
+    $container->config->set('view.paths', $pathes);
+
+    // dump($pathes);
+    // echo __FILE__.':'.__LINE__; exit();
+    // FacadesView::addLocation(__DIR__ . '/templates');
+
+
+
+
+    // $container->bind('config', function () use ($cachePath) {
+    //     return new Repository([
+    //         'view' => [
+    //             'paths' => [
+    //                 get_template_directory() . '/templates',
+    //                 __DIR__ . '/templates',
+    //             ],
+    //             'compiled' => $cachePath,
+    //         ]
+    //     ]);
+    // }, true);
 
     $container->bind(View::class, function () use ($container) {
         $view = View::getInstance($container,);

@@ -6,14 +6,29 @@ use Deljdlx\WPTaverne\Controllers\MindMap;
 use Deljdlx\WPTaverne\Controllers\Sandbox;
 use Deljdlx\WPTaverne\Controllers\Singular;
 use Deljdlx\WPTaverne\Controllers\Timeline;
-
+use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Http\Request;
 
 $router->get('/css/custom.css', function () {
+    header('Content-Type: text/css');
     $buffer = wp_forge()->view->render('layouts.custom-css', [
 
     ]);
     return $buffer;
 });
+
+
+
+$router->get('/weapons', function () {
+    $buffer = wp_forge()->view->render('layouts.weapons', []);
+    return $buffer;
+});
+
+$router->get('/sheet', function () {
+    $buffer = wp_forge()->view->render('layouts.sheet', []);
+    return $buffer;
+});
+
 
 
 
@@ -142,11 +157,17 @@ $router->addRoute(['GET', 'POST'], '/sign-out', function () {
     return $buffer;
 });
 
+$router->get('^/bla', function () {
+    return 'bla';
+});
+
 
 $router->get('^/$', function () {
     $controller = new Home($this->container);
     return $controller->index();
 });
+
+
 
 
 // ===========================================================

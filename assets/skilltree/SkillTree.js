@@ -1,5 +1,5 @@
 
-class SkillEditor {
+class SkillTree {
   currentSelectedNode = null;
   tree;
 
@@ -26,6 +26,10 @@ class SkillEditor {
   types = {
     root: {
       icon: "fa-solid fa-diamond"
+    },
+
+    "category-variables": {
+      icon: "fa-solid fa-folder"
     },
 
     "category-attributes": {
@@ -56,6 +60,9 @@ class SkillEditor {
     skill: {
       icon: "fa-solid fa-wand-sparkles"
     },
+    variable: {
+      icon: "fa-solid fa-dollar-sign"
+    },
 
     default: {
       icon: "fa-solid fa-folder"
@@ -70,11 +77,18 @@ class SkillEditor {
     'delete_node.jstree': [],
   }
 
+  freeEditMode = false
+
 
   constructor(data) {
-
     this.data = data;
   }
+
+  enableFreeEditMode() {
+    this.freeEditMode = true;
+  }
+
+
 
   addEventListener(name, callback) {
     this.eventListeners[name].push(callback);
@@ -94,6 +108,15 @@ class SkillEditor {
         'data': this.data.treeData,
         'multiple': false,
         "check_callback": (operation, node, parent, position, more) => {
+
+
+          console.log('%cSkillEditor.js :: 113 =============================', 'color: #f00; font-size: 1rem');
+          console.log(this.freeEditMode);
+
+          if(this.freeEditMode) {
+            return true;
+          }
+
           console.log('%cSkillEditor.js :: 64 =============================', 'color: #f00; font-size: 1rem');
           console.log(operation);
 
@@ -103,7 +126,6 @@ class SkillEditor {
           }
 
           if (node.id === "root") {
-
             if (operation === "delete_node") {
               return false;
             }
@@ -239,6 +261,14 @@ class SkillEditor {
       return false;
     }
 
+    if (
+        node.type === "category-perks"
+        || node.type === "category-skills"
+        || node.type === "category-attributes"
+      ) {
+      return false;
+    }
+
   }
 
 
@@ -297,6 +327,7 @@ class SkillEditor {
 
     console.log('%cNEW NODE =============================', 'color: #f00; font-size: 1rem');
     console.log(parentType);
+    console.log(parentNode);
 
 
     if (parentType === 'cluster') {
@@ -319,8 +350,14 @@ class SkillEditor {
       data.instance.set_text(data.node, "Nouvelle caracteristique");
       data.instance.set_type(data.node, 'characteristic');
     }
+    else if (parentType === 'category-variables') {
+      data.instance.set_text(data.node, "Nouvelle variable");
+      data.instance.set_type(data.node, 'variable');
+    }
     else {
-      data.instance.delete_node(data.node);
+      if(!this.freeEditMode) {
+        data.instance.delete_node(data.node);
+      }
     }
 
     data.node.data = {

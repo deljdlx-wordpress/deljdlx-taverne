@@ -13,7 +13,7 @@ class Character extends Base
 
     public static $appendJs = [
         'plugin://deljdlx-taverne/assets/skilltree/SkillTree.js',
-        'plugin://deljdlx-taverne/assets/skilltree/alpine.js',
+        'plugin://deljdlx-taverne/assets/skilltree/store.js',
         'plugin://deljdlx-taverne/assets/skilltree/viewer.js',
     ];
 

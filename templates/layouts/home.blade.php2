@@ -62,9 +62,6 @@
         </div>
     </dialog>
 
-    <livewire:hello-world />
-
-
     @yield('body-content')
 
 

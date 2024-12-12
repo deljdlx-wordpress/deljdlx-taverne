@@ -1,7 +1,19 @@
 <div class="skill-tree-viewer">
+
+
+    <div id="loading-indicator" class="flex" style="justify-items: center; gap: 1rem">
+        <span>Enregistrement</span>
+        <span class="loading loading-ring loading-lg  text-primary"></span>
+    </div>
+
+
+
     <div>
         @if(isset($character))
-            <h1>{{ $character->getField('name') }}</h1>
+            <div class="flex items-end justify-between">
+                <h1>{{ $character->getField('name') }}</h1>
+                <a class="no-print" href="{{get_home_url() }}/my-desktop">Retour</a>
+            </div>
         @endif
 
         <template x-if="ready">
@@ -43,14 +55,19 @@
                                             if(incrementValue(node.data.code, 1, 0, 10)) {
                                                 availableAttributePoints--;
                                             }
-                                        }" class="btn btn-xs btn-primary value-modifier">
+                                        }"
+                                        class="btn btn-xs btn-primary value-modifier"
+                                        :disabled="getValueByCode(node.data.code) == 10 || !availableAttributePoints"
+                                    >
                                         <i class="fas fa-plus" style="font-size: 10px;"></i>
                                     </button>
                                     <button x-on:click="
                                         if(incrementValue(node.data.code, -1, 0, 10)) {
                                             availableAttributePoints++;
-                                        }
-                                    " class="btn btn-xs btn-primary value-modifier">
+                                        }"
+                                        class="btn btn-xs btn-primary value-modifier"
+                                        :disabled="getValueByCode(node.data.code) == 0"
+                                    >
                                         <i class="fas fa-minus"></i>
                                     </button>
                                 </div>
@@ -215,14 +232,20 @@
                                                 if(incrementValue(skill.data.code)) {
                                                     availableSkillPoints--;
                                                 }
-                                            }" class="btn btn-xs btn-primary value-modifier">
+                                            }"
+                                            class="btn btn-xs btn-primary value-modifier"
+                                            :disabled="!availableSkillPoints || getValueByCode(skill.data.code) >= 100"
+                                        >
                                             <i class="fas fa-plus" style="font-size: 10px;"></i>
                                         </button>
 
                                         <button x-on:click="
                                             if(incrementValue(skill.data.code, -1)) {
                                                 availableSkillPoints++;
-                                            }"class="btn btn-xs btn-primary value-modifier">
+                                            }"
+                                            class="btn btn-xs btn-primary value-modifier"
+                                            :disabled="getValueByCode(skill.data.code) == 0"
+                                        >
                                             <i class="fas fa-minus"></i>
                                         </button>
                                     </div>
