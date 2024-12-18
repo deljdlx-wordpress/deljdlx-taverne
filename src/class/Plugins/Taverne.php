@@ -89,7 +89,7 @@ class Taverne extends Plugin
                 ScenarioEvent::$POST_TYPE => 'Scenario events',
                 Organization::$POST_TYPE => 'Organizations',
                 Documentation::$POST_TYPE => 'Documentations',
-                SkillTree::$POST_TYPE => 'Skills trees',
+                // SkillTree::$POST_TYPE => 'Skills trees',
             ];
 
             foreach($cpts as $slug => $caption) {

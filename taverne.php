@@ -40,9 +40,12 @@ if(!is_dir(__DIR__ . '/../deljdlx-forge')) {
     return;
 }
 
-
-require_once __DIR__ . '/../deljdlx-forge/jdlx-forge.php';
 require_once __DIR__ . '/composer/autoload.php';
+
+if(!function_exists('acf_add_local_field_group')) {
+    return;
+}
+
 
 // ===========================================================
 
@@ -67,9 +70,6 @@ $pdo = $container->get(PDO::class);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 Analog::handler(HandlerPDO::init($pdo, $wpdb->prefix.'tav_logs'));
 // ===========================================================
-
-
-// $container = container();
 
 
 $taverne = new Taverne($container, __FILE__);
