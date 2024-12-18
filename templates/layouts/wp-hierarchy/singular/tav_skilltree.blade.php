@@ -1,5 +1,5 @@
 <?php
-use Deljdlx\WPTaverne\Models\SkillTree;
+use Deljdlx\TreeEditor\Models\SkillTree;
 
 
 $postId = get_the_ID();

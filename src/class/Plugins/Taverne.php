@@ -4,7 +4,6 @@ namespace Deljdlx\WPTaverne\Plugins;
 
 use Deljdlx\WPForge\Container;
 use Deljdlx\WPForge\Plugin;
-use Deljdlx\WPForge\Router;
 use Deljdlx\WPTaverne\Controllers\PageNotFound;
 use Deljdlx\WPTaverne\Models\Article;
 use Deljdlx\WPTaverne\Models\Character as ModelsCharacter;
@@ -14,7 +13,6 @@ use Deljdlx\WPTaverne\Models\Place;
 use Deljdlx\WPTaverne\Models\Resource;
 use Deljdlx\WPTaverne\Models\Scenario;
 use Deljdlx\WPTaverne\Models\ScenarioEvent;
-use Deljdlx\WPTaverne\Models\SkillTree;
 
 
 class Taverne extends Plugin
@@ -26,13 +24,10 @@ class Taverne extends Plugin
         $instance = static::getInstance();
 
         try {
-
             $result = $instance->router->route();
-
             if($result) {
                 http_response_code(200);
                 echo $result;
-                return true;
             }
             else {
                 // echo wp_forge()->view->render('layouts.home');
@@ -48,7 +43,6 @@ class Taverne extends Plugin
     public function __construct(Container $container,$bootstrapFile = null)
     {
         parent::__construct($container,$bootstrapFile);
-        $this->router = Router::getInstance();
 
         $router = $this->router;
 
@@ -63,8 +57,6 @@ class Taverne extends Plugin
         ScenarioEvent::register();
         Organization::register();
         Documentation::register();
-        SkillTree::register();
-
     }
 
 
