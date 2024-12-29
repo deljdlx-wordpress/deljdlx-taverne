@@ -6,17 +6,17 @@ use Deljdlx\WPTaverne\Controllers\SkillTree;
 use Illuminate\Http\Request;
 
 
-$router->addRoute(['GET',], '/my-dektop/skills-editor', function () {
-    $this->mustBeLogged();
-    $controller = new SkillTree($this->container);
-    return $controller->index();
-}, 'skills-editor-index');
+// $router->addRoute(['GET',], '/my-dektop/skills-editor', function () {
+//     $this->mustBeLogged();
+//     $controller = new SkillTree($this->container);
+//     return $controller->index();
+// }, 'skills-editor-index');
 
 
-$router->addRoute(['POST'], '/my-dektop/skills-editor', function () {
-    $controller = new SkillTree($this->container);
-    return $controller->save();
-}, 'skills-editor-save');
+// $router->addRoute(['POST'], '/my-dektop/skills-editor', function () {
+//     $controller = new SkillTree($this->container);
+//     return $controller->save();
+// }, 'skills-editor-save');
 
 
 $router->addRoute(['GET', 'POST'], '/my-dektop/scenario-edit', function () {

@@ -151,7 +151,7 @@ $router->get('^/$', function () {
 
 // ===========================================================
 
-$router->addRoute(['GET', 'POST'], '/', function () {
+$router->addRoute(['GET',], '/', function () {
     if(is_singular()) {
         $controller = new Singular($this->container);
         return $controller->index();

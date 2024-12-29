@@ -41,6 +41,7 @@ if(!is_dir(__DIR__ . '/../deljdlx-forge')) {
 }
 
 require_once __DIR__ . '/composer/autoload.php';
+require_once __DIR__ . '/../deljdlx-forge/jdlx-forge.php';
 
 if(!function_exists('acf_add_local_field_group')) {
     return;
@@ -50,7 +51,7 @@ if(!function_exists('acf_add_local_field_group')) {
 // ===========================================================
 
 $container = Application::getInstance();
-$container->addTemplatePath(__DIR__ . '/templates');
+$container->addTemplatePath(__DIR__ . '/templates', 100);
 $container->loadComponentsFromFolder(
     __DIR__ . '/src/class/Components/',
     'Deljdlx\WPTaverne\Components',

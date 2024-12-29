@@ -18,10 +18,10 @@ use Deljdlx\WPForge\Models\Post;
 @section('page-content')
 
     <section>
-        <a class="btn btn-neutral" href="{{ home_url() }}/my-dektop/calendar">Calendrier</a>
+        <a class="btn btn-neutral" href="{{ home_url() }}/my-desktop/calendar">Calendrier</a>
         <a class="btn btn-neutral" href="{{home_url('/my-desktop/character-edit')}}">Créer un nouveau personnage</a>
-        <a class="btn btn-neutral" href="{{home_url('/my-desktop/place-edit')}}">Créer un nouveau lieu</a>
-        <a class="btn btn-neutral" href="{{ get_home_url() }}/my-dektop/skills-editor">Créer un nouveau arbre de compétences</a>
+        <a class="btn btn-neutral" href="{{home_url('/my-desktop/place-edit/edit')}}">Créer un nouveau lieu</a>
+        <a class="btn btn-neutral" href="{{ get_home_url() }}/tree-editor">Créer un nouveau arbre de compétences</a>
     </section>
 
     <section>
@@ -31,7 +31,7 @@ use Deljdlx\WPForge\Models\Post;
 
             @foreach($skilltrees as $skilltree)
                 <div class="card card-skilltree">
-                    <a href="{{ get_home_url() }}/my-dektop/skills-editor?id={{ $skilltree->getId() }}">
+                    <a href="{{ get_home_url() }}/my-dektop/tree-editor/edit?id={{ $skilltree->getId() }}">
                         <span class="content">
                             {{$skilltree->getTitle()}}
                         </span>

@@ -2,10 +2,9 @@
 
 namespace Deljdlx\WPTaverne\Controllers;
 
+use Deljdlx\TreeEditor\Models\Tree;
 use Deljdlx\WPTaverne\Models\Character;
 use Deljdlx\WPTaverne\Models\Place;
-use Deljdlx\WPTaverne\Models\SkillTree;
-use Deljdlx\WPTaverne\Models\TavEntity;
 
 class MyDesktop extends Base
 {
@@ -30,8 +29,8 @@ class MyDesktop extends Base
                 'instance' => Place::class,
             ],
             'skilltrees' => [
-                'type' => 'tav_skilltree',
-                'instance' => SkillTree::class,
+                'type' => 'deljdlx_tree',
+                'instance' => Tree::class,
             ],
         ];
 

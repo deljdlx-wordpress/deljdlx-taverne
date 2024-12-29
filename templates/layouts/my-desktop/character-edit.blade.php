@@ -52,6 +52,8 @@ if(isset($_POST['name'])) {
 
     <script>
 
+        /*
+
         document.querySelector('#character-generate-trigger').addEventListener('click', (e) => {
         // document.querySelector('#ai-form').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -108,6 +110,8 @@ if(isset($_POST['name'])) {
                 tinymce.get('typical-items').setContent(typicalItemsContent);
             });
         });
+
+        */
 
     </script>
 
